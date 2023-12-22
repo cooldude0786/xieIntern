@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+    }
+    .header{
+        height: 80px;
+        background-color: #283FB6 ;
+        width: 100vw;
+    }
+    .MNavbar{
+        width: 255px;
+        height: 615px;
+        background-color: #E9E8E8;
+    }
