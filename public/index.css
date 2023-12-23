@@ -1,14 +1,110 @@
-*{
+* {
     padding: 0;
     margin: 0;
-    }
-    .header{
-        height: 80px;
-        background-color: #283FB6 ;
-        width: 100vw;
-    }
-    .MNavbar{
-        width: 255px;
-        height: 615px;
-        background-color: #E9E8E8;
-    }
+}
+
+.header {
+    height: 80px;
+    background-color: #283FB6;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.header span {
+    padding-left: 25px;
+    font-size: 25px;
+    color: azure;
+}
+
+.outer {
+    height: calc(100vh - 80px);
+}
+
+.MNavbar {
+    max-width: 255px;
+    height: 95%;
+    background-color: #73A6F1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+.MNavbar .Name {
+    /* height: 50px; */
+    padding-top: 40px;
+}
+
+.MNavbar .Name span {
+    /* margin-top: 25px; */
+    font-size: 27px;
+}
+
+.MNavbar .search {
+    padding-top: 20px;
+    height: 47px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.MNavbar .search input {
+    border: none;
+    height: inherit;
+    border-radius: 40px;
+    width: 80%;
+    padding: 0 10px;
+    padding-left: 20px;
+}
+
+.MNavbar .search input:focus-visible {
+    outline: 0px;
+    box-shadow: 0 0 9pt 2pt #283fb6;
+}
+
+.MNavbar .outerUl {
+    background: white;
+    height: 100%;
+    width: 88%;
+    /* padding: 10px; */
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.MNavbar .outerUl::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+.MNavbar .outerUl ul {
+    padding: 10px;
+    height: fit-content;
+    list-style: none;
+    row-gap: 10px;
+    display: grid;
+}
+
+.MNavbar .outerUl ul li {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* .MNavbar */
