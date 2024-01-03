@@ -13,33 +13,78 @@
     <span>IT Department</span>
   </div>
   <div class="outer">
+
     <div class="MNavbar">
       <div class="Name"><span>All subject</span></div>
       <div class="search"><input type="text"></div>
       <div class="outerUl">
         <ul>
           <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
-          <li>abcd</li>
         </ul>
+      </div>
+    </div>
+    <div class="homePage">
+      <div class="wrapper">
+
+        <div class="slider-buttons">
+          <button class="slider-button" onclick="changeSlide('note')">Notes</button>
+          <button class="slider-button" onclick="changeSlide('QB')">Question Banks</button>
+          <button class="slider-button" onclick="changeSlide('YT')">Video Links</button>
+        </div>
+
+        <div class="slider-container">
+          <div class="slider-content" id="sliderContent">
+            <div class="slide dN" id="note">
+              <h1>Module Wise - Notes</h1>
+              <div class="module" id="module">
+                <div class="container">
+                  <h1 id="modno">Module 1</h1>
+                  <img src="scr/delete.png" id="deleteButton" alt="" srcset="">
+                  <!-- <button id="deleteButton"></button> -->
+                </div>
+
+                <ul class="submodule" id="listContainer">
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfgasdfsadfgsasdgsadfgadesrfgasdfsadfgasdgsadfgadesrfgasdfsadfgasdgsadfgadesrfgasdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                </ul>
+                <div class="viewmore">
+                  <button class="viewmoreBtn" id="vm" onclick="expandModule(this)">View More</button>
+                </div>
+              </div>
+
+              <div class="module" id="module">
+                <div class="container">
+                  <h1 id="modno">Module 2</h1>
+                  <button id="deleteButton"></button>
+                </div>
+
+                <ul class="submodule" id="listContainer">
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                  <li class="chapters" ><div>asdfsadfgasdgsadfgadesrfg</div><a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style="display: none;"></a></li>
+                </ul>
+                <div class="viewmore">
+                  <button class="viewmoreBtn" onclick="expandModule(this)">View More</button>
+                </div>
+              </div>
+            </div>
+            <div class="slide dN" id="QB">
+              <h1>Module 1 - Question Banks</h1>
+              <p>Students refer to the question banks for module 1.</p>
+            </div>
+            <div class="slide dN" id="YT">
+              <div class="slide-content">
+                <iframe width="100%" height="420" src="https://www.youtube.com/embed/K4TOrB7at0Y?si=VLOUQg9bJUvtlerf"
+                  frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -73,7 +118,9 @@
       var extension = GetFileExt(files[0])
       var name = GetFileName(files[0])
     }
+
   </script>
+  <script src="index.js"></script>
 </body>
 
 </html>
