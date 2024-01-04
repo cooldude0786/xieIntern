@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://127.0.0.1:5500/public/bt.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./Home_files/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Home_files/index.css">
+</head>
+
+<body class="" style="
+    height: 119vh;
+">
+    <div class="row col-12 d-flex align-items-center p-0 m-0 p-lg-4 bg-primary header">IT Department</div>
+    <div class="col-md-12 d-flex flex-wrap m-0 p-0" style="/* height: auto; */">
+        <div class="MNavbar align-items-center col-md-3 flex-column justify-content-start m-0 p-0 row">
+            <div class="row AllSubject pb-5 h2">All Subject</div>
+            <div class="align-items-center m-0 p-0 row search"><input type="text" fdprocessedid="fk1ku1i"></div>
+            <div class="m-3 outerUl p-2 row w-75">
+                <ul>
+                    <li>asdfas</li>
+                    <li>asdfas</li>
+                    <li>asdfas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrapper col-md-9 d-flex justify-content-center p-5 h-100 ">
+            <div class="Cshadow col-md-12 h-100 h-auto p-3 rounded">
+                <div class="row col-md-12 justify-content-center slider-buttons p-2">
+                    <button class="slider-button" onclick="changeSlide(&#39;note&#39;)" fdprocessedid="lm09cn">Notes</button>
+                    <button class="slider-button" onclick="changeSlide(&#39;QB&#39;)" fdprocessedid="tzz2c">Question Banks</button>
+                    <button class="slider-button" onclick="changeSlide(&#39;YT&#39;)" fdprocessedid="6vyp1">Video Links</button>
+                </div>
+                <div class="col-sm-12 h-100 p-5 row">
+                    <div class="col-md-12 flex-nowrap ">
+                        <span class="heading h1 py-2">Module Notes</span>
+                        <div class="col-md-12 flex-column flex-nowrap h-100 modules pt-4 row">
+                            <div class="row module col-md-12" style="
+    height: 91px;
+">abcd</div>
+                            <div class="row module col-md-12">abcd</div>
+                            <div class="row module col-md-12">abcd</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

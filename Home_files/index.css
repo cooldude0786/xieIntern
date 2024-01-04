@@ -191,7 +191,6 @@ height: fit-content;}
     justify-content: space-evenly;
     flex-direction: column;
     border-radius: 13px; */
-    padding: 10px 10px;
 }
 
 .submodule {
@@ -266,7 +265,4 @@ height: fit-content;}
 }
 .Cshadow{
     box-shadow:4px 6px 25px 4px rgb(0,0,0,0.7) !important;
-}
-.card{
-    height: 180px;
 }
