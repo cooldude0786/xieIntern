@@ -192,6 +192,10 @@ height: fit-content;}
     flex-direction: column;
     border-radius: 13px; */
     padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
 }
 
 .submodule {
@@ -269,4 +273,10 @@ height: fit-content;}
 }
 .card{
     height: 180px;
+}
+.message{
+    gap: 16px;
+}
+.message li{
+    cursor: pointer;
 }
