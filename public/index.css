@@ -22,7 +22,7 @@
 
 .MNavbar {
     background-color: #73A6F1;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .MNavbar .Name {
@@ -182,7 +182,9 @@ height: fit-content;}
     display: none;
     transition: display 1s ease-in;
 }
-
+.bg-wrap{
+    background-color: #ebebeb;
+}
 /* .MNavbar */
 .module {
     /* background-color: #D9D9D9;
@@ -197,7 +199,13 @@ height: fit-content;}
     flex-wrap: nowrap;
     gap: 20px;
 }
-
+.qb{
+    padding: 10px 10px;
+    /* display: flex; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
 .submodule {
     list-style: decimal;
 }
