@@ -82,7 +82,7 @@
             </div> -->
             </div>
 
-            <div class="d-none flex-column flex-nowrap qb" id="QB">
+            <!-- <div class="d-none flex-column flex-nowrap qb" id="QB">
               <div class="card">
                 <div class="align-items-lg-start container flex-column h-100">
                   <div class="h3">Module 1 :-(name of the module)</div>
@@ -109,7 +109,7 @@
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -138,7 +138,23 @@
       console.log(database)
 
     </script> -->
-    <script type="module"  src="index.js"></script>
+    <script type="module" src="index.js"></script>
+    <script>
+      function changeSlide(div) {
+        let arr = ['note', 'QB']
+        for (let i of arr) {
+          console.log(i)
+          if (i == div) {
+            document.getElementById(i).classList.add('d-flex')
+            document.getElementById(i).classList.remove('d-none')
+          }
+          else {
+            document.getElementById(i).classList.remove('d-flex')
+            document.getElementById(i).classList.add('d-none')
+          }
+        }
+      }
+    </script>
 </body>
 
 </html>

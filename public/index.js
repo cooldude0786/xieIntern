@@ -1,134 +1,88 @@
- // Import the functions you need from the SDKs you need
- import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
- import { getDatabase, ref, child, get  } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
- const firebaseConfig = {
-   apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
-   authDomain: "xieresource.firebaseapp.com",
-   databaseURL: "https://xieresource-default-rtdb.asia-southeast1.firebasedatabase.app",
-   projectId: "xieresource",
-   storageBucket: "xieresource.appspot.com",
-   messagingSenderId: "624733959118",
-   appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
-   measurementId: "G-YT3MV5GCBY"
- };
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+import { getDatabase, ref, set, child, get, remove, update } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
+    authDomain: "xieresource.firebaseapp.com",
+    databaseURL: "https://xieresource-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "xieresource",
+    storageBucket: "xieresource.appspot.com",
+    messagingSenderId: "624733959118",
+    appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
+    measurementId: "G-YT3MV5GCBY"
+};
+const app = await initializeApp(firebaseConfig);
 
- // Initialize Firebase
- const app = initializeApp(firebaseConfig);
-//  const database = getDatabase(app);
-//  console.log(database)
+const db = await ref(getDatabase(app));
 
-const dbRef = ref(getDatabase(app));
-get(child(dbRef, `Module`)).then((snapshot) => {
-  if (snapshot.exists()) {
-    console.log(snapshot.val());
-  } else {
-    console.log("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
+document.addEventListener('DOMContentLoaded', async function () {
+    // deleteSubjectKey('ITL605');
+    InsertingLink();
+
+    var resultData = await GetAllDataFromDB();
+    // console.log(a);
+    for (let i in resultData) {
+        // inside the specfic Module. 
+        let Module = resultData[i]
+        for (let Chapters in Module) {
+            // Looping throught the chapters
+            let chapter = Module[Chapters]
+            console.log(chapter.name, chapter.data);
+            generateAndAppendCard(Chapters[Chapters.length - 1], chapter.name, chapter.data)
+        }
+    }
 });
-
-
-
-// let currentIndex = 0;
-var Data = {
-    'Module': {
-        'chap1': { 'name': 'Introduction', 'data': [{ tittle: 'abcd', link: 'https://www.google.com/', msg: 'good morning' }] },
-        'chap2': { 'name': 'Kick Start', 'data': [{ tittle: 'abcd', link: 'www.google.com', msg: 'good morning' }] },
-        'chap3': { 'name': 'InterMediate', 'data': [{ tittle: 'abcd', link: 'www.google.com', msg: 'good morning' }] },
-    }
+function InsertingLink() {
+    const db = getDatabase();
+    update(ref(db, 'sem6/Module/chap1/data'), {
+        // name: 'Data Warehouse (DWH) Fundamentals with Introduction to Data Mining',
+        // data: {
+            // 0: {
+            //     link: 'www.google.com',
+            //     msg: 'Basic ',
+            //     title: 'DWH characteristics'
+            // },
+            3: {
+                link: 'www.google.com',
+                msg: 'All types od Dimensional model',
+                title: 'Dimensional modeling'
+            },
+        // }
+    });
 }
-for ( let data in Data) {
-    // for(chapter in data['Module']){
-    // for(i in Data[data]){
-    //     // generateAndAppendCard(i)
-    //     console.log(i);
-    // }
-    // }    
-    let chapters = Data[data]
-    for (let chapter in chapters) {
-        let ChapterName = chapters[chapter].name
-        let li = chapters[chapter].data
-        for (let i in li) {
-           let title = li[i].tittle
-           let msg = li[i].msg
-           let link = li[i].link
-            generateAndAppendCard(ChapterName, title, msg, link);
+function GetAllDataFromDB() {
+    // Return the promise here
+    return get(child(db, `sem6`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            // Return the value here
+            return snapshot.val();
+        } else {
+            console.log("No data available");
         }
-        // console.log(chapters[chapter][0].name);
-    }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
-var subjects = {
-    'IT0564': { name: 'cns', ref: 'abcd' },
-    'IT0565': { name: 'admt', ref: 'abcd' },
-    'IT0566': { name: 'SE', ref: 'abcd' }
-}
-function changeSubject(_id){
-alert(`called ${_id}`)
-}
-function changeSlide(div) {
-    let arr = ['note', 'QB']
-    // const sliderContent = document.getElementById('sliderContent');
-    // const slides = document.querySelectorAll('.slide');
-    // const slideWidth = slides[0].clientWidth;
 
-    // currentIndex = index;
-
-    // sliderContent.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    for (let i of arr) {
-        console.log(i)
-        if (i == div) {
-            document.getElementById(i).classList.add('d-flex')
-            document.getElementById(i).classList.remove('d-none')
+function GetCount(s) {
+    // Return the promise here
+    return get(child(db, `${s}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            // Return the value here
+            return snapshot;
+        } else {
+            console.log("No data available");
         }
-        else {
-            document.getElementById(i).classList.remove('d-flex')
-            document.getElementById(i).classList.add('d-none')
-        }
-    }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
-function expandModule(id_) {
-    let parentDiv = id_.parentNode.parentNode
-    if (parentDiv.children[1].style.height !== 'auto') {
-        parentDiv.children[1].style.height = "auto"
-        id_.innerText = 'View Less'
-    } else {
-        parentDiv.children[1].style.height = "100px"
-        id_.innerText = 'View More'
-    }
-}
-const subjectDiv = document.getElementById('subject-List');
-for(let subject in subjects){
-    let li = document.createElement('li')
-    li.textContent = subjects[subject].name;
-    li.id = subject;
-    // li.addEventListener('click',changeSubject())
-    subjectDiv.appendChild(li);
-}  
-const subjectLis = subjectDiv.querySelectorAll('li')
-subjectLis.forEach((iteam)=>{
-    iteam.addEventListener("click",()=>{
-        event.preventDefault();
-        changeSubject(iteam.id)
-    })
-})
-// const chaptersList = document.querySelectorAll('.chapters');
 
-// // Loop through each element and add a click event listener
-// chaptersList.forEach(chapter => {
-//     chapter.addEventListener('click', () => {
-//         // Find the child 'a' element within the clicked 'li' and trigger a click on it
-//         const anchor = chapter.querySelector('a');
-//         if (anchor) {
-//             anchor.click();
-//         }
-//     });
-// });
-document.addEventListener('DOMContentLoaded', function () {
+
+function addActionToLi() {
     // Get all list items with the class 'message'
     const listItems = document.querySelectorAll('.message li');
-
     // Add a click event listener to each list item
     listItems.forEach(function (item) {
         item.addEventListener('click', function (event) {
@@ -142,10 +96,22 @@ document.addEventListener('DOMContentLoaded', function () {
             window.open(anchorTag.href, '_blank');
         });
     });
-});
+}
+function changeSubject(_id) {
+    alert(`called ${_id}`)
+}
+function expandModule(id_) {
+    let parentDiv = id_.parentNode.parentNode
+    if (parentDiv.children[1].style.height !== 'auto') {
+        parentDiv.children[1].style.height = "auto"
+        id_.innerText = 'View Less'
+    } else {
+        parentDiv.children[1].style.height = "100px"
+        id_.innerText = 'View More'
+    }
+}
 
-
-function generateAndAppendCard(moduleName, title, msg, linkUrl) {
+function generateAndAppendCard(index, moduleName, links) {
     // Create card element
     // Outer div block
     const cardDiv = document.createElement("div");
@@ -157,29 +123,33 @@ function generateAndAppendCard(moduleName, title, msg, linkUrl) {
     // Header of the div. The title of the div
     const h3Element = document.createElement("div");
     h3Element.classList.add("h3");
-    h3Element.textContent = `${moduleName}: -`;
+    h3Element.textContent = `${index}:- ${moduleName}: -`;
 
     // Ul that contain all the links of chapter
     const ulElement = document.createElement("ul");
-    ulElement.classList.add("message", "overflow-auto", "pl-5");
+    ulElement.classList.add("message", "overflow-auto", "pl-5", "w-100");
+    links.forEach((linkData, index) => {
+        console.log(linkData);
+        let i = 0;
+        const liElement = document.createElement("li");
+        // Title of the link
+        const bElement = document.createElement("b");
+        bElement.textContent = `${index + 1} ${linkData.title}`; // Example: Title 1, Title 2, ...
+        liElement.appendChild(bElement);
+        // Sub message of the div
+        liElement.appendChild(document.createTextNode(` ${linkData.msg} `));
+        // Link to the PDF
+        const aElement = document.createElement("a");
+        aElement.href = linkData.link;
+        aElement.target = "_blank";
+        // aElement.rel = "noopener noreferrer";
+        aElement.style.display = "none";
+        liElement.appendChild(aElement);
 
-    // li the actual link to the pdf
-    const liElement = document.createElement("li");
-    // Ttile of the link
-    const bElement = document.createElement("b");
-    bElement.textContent = title;
-    liElement.appendChild(bElement);
-    // sub message of the div
-    liElement.appendChild(document.createTextNode(` ${msg} `));
-    // link of the pdf
-    const aElement = document.createElement("a");
-    aElement.href = linkUrl;
-    aElement.target = "_blank";
-    // aElement.rel = "noopener noreferrer";
-    aElement.style.display = "none";
-    liElement.appendChild(aElement);
+        ulElement.appendChild(liElement);
+    })
+    // Create and append 5 li elements
 
-    ulElement.appendChild(liElement);
     containerDiv.appendChild(h3Element);
     containerDiv.appendChild(ulElement);
     cardDiv.appendChild(containerDiv);
