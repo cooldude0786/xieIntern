@@ -1,0 +1,290 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    height: 80px;
+    background-color: #283FB6;
+}
+
+.header span {
+    padding-left: 25px;
+    font-size: 25px;
+    color: azure;
+}
+
+.outer {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 80px);
+}
+
+.MNavbar {
+    background-color: #73A6F1;
+    /* height: 100vh; */
+}
+
+.MNavbar .Name {
+    /* height: 50px; */
+    padding-top: 40px;
+}
+
+.MNavbar .Name span {
+    /* margin-top: 25px; */
+    font-size: 27px;
+}
+
+.MNavbar .search {
+    padding-top: 20px;
+    height: 47px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.MNavbar .search input {
+    border: none;
+    height: inherit;
+    border-radius: 40px;
+    width: 80%;
+    padding: 0 10px;
+    padding-left: 20px;
+}
+
+.MNavbar .search input:focus-visible {
+    outline: 0px;
+    box-shadow: 0 0 9pt 2pt #283fb6;
+}
+
+.MNavbar .outerUl {
+    background: white;
+    /* height: 100%;
+    width: 88%; */
+    /* padding: 10px; */
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.MNavbar .outerUl::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+.MNavbar .outerUl ul {
+    padding: 10px;
+    height: fit-content;
+    list-style: none;
+    row-gap: 10px;
+    display: grid;
+}
+
+.MNavbar .outerUl ul li {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.homePage {
+    width: 100%;
+}
+
+.slider-buttons {
+    text-align: center;
+height: fit-content;}
+
+.slider-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.slider-button:hover {
+    background-color: red;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 798px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    overflow: hidden;
+}
+
+.slider-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    justify-content: center;
+    padding: 15px 0px;
+}
+
+.slide {
+    display: grid;
+    row-gap: 25px;
+    box-sizing: border-box;
+    width: 99%;
+    padding: 14px;
+    background-color: #fff;
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    /* margin-right: 20px; */
+    overflow: hidden;
+    transition: display 0.3s ease-in-out;
+}
+
+.slide-content {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.slide:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.dF {
+    display: block;
+    transition: display 1s ease-in;
+}
+
+.dN {
+    display: none;
+    transition: display 1s ease-in;
+}
+.bg-wrap{
+    background-color: #ebebeb;
+}
+/* .MNavbar */
+.module {
+    /* background-color: #D9D9D9;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-radius: 13px; */
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+.qb{
+    padding: 10px 10px;
+    /* display: flex; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+.submodule {
+    list-style: decimal;
+}
+
+#modno {
+    font-size: 50px;
+    font-family: Inter;
+}
+
+
+
+
+.editButton {
+    width: 34px;
+    height: 32px;
+    background-color: #D9D9D9;
+    position: absolute;
+    left: 95%;
+    top: 10%;
+}
+
+.submodno {
+    position: absolute;
+}
+
+#deleteButton {
+    width: 60px;
+    cursor: pointer;
+    /* background-color: #B50E0E; */
+    /* background-image: url('scr/delete.png'); */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    height: 119px;
+    justify-content: space-between;
+    padding: 10px 15px;
+    ;
+}
+
+
+.viewmoreBtn {
+    height: 28px;
+    width: 158px;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 20px;
+    background-color: #2D69DE;
+    font-family: Inter;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+.viewmoreBtn:hover{
+    background-color: #fff;
+    color: #2D69DE;
+}
+.viewmore {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.expanded {
+    height: auto;
+    padding-bottom: 50px;
+}
+.Cshadow{
+    box-shadow:4px 6px 25px 4px rgb(0,0,0,0.7) !important;
+}
+.card{
+    height: 180px;
+}
+.message{
+    gap: 16px;
+}
+.message li{
+    cursor: pointer;
+}
