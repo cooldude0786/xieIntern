@@ -97,6 +97,9 @@ function addActionToLi() {
             window.open(anchorTag.href, '_blank');
         });
     });
+
+
+
     
 }
 function changeSubject(_id) {
