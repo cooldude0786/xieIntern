@@ -64,3 +64,10 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+/.firebase
+*.json
+*.html
+.gitignore
+/Home_files
+.firebaserc
