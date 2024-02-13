@@ -66,8 +66,9 @@ node_modules/
 .env
 
 .firebase/
-*.json
-*.html
-.gitignore
+package.json
+Home.html
+index.html
+..gitignore
 Home_files/
-.firebaserc 
+..firebaserc 
