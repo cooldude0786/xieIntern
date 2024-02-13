@@ -67,5 +67,7 @@ node_modules/
 
 /.firebase
 *.json
-home.html
-index.html
+*.html
+.gitignore
+/Home_files
+.firebaserc
