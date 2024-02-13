@@ -70,4 +70,4 @@ node_modules/
 *.html
 .gitignore
 /Home_files
-.firebaserc
+.firebaserc 
