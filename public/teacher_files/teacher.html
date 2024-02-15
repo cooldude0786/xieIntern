@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://127.0.0.1:5500/public/index.html -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+
+  <style>
+    .modal-edit {
+      display: flex;
+      padding-left: 750px;
+      justify-content: space-between;
+    }
+
+    .modal-edit .modal-delete {
+      margin-left: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="row col-12 d-flex align-items-center p-0 m-0 p-lg-4 bg-primary header">IT Department</div>
+  <div class="row col-md-12 p-0 m-0 ">
+    <div class="MNavbar align-items-center col-md-3 flex-column justify-content-start m-0 p-0 row">
+      <div class="row AllSubject pb-5 h2">All Subject</div>
+      <div class="align-items-center m-0 p-0 row search"><input type="text"></div>
+      <div class="m-3 outerUl p-2 row w-75">
+        <ul id="subject-List">
+          <li>AI DS</li>
+          <li>BIDL</li>
+          <li>MAD</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrapper col-md-9 d-flex justify-content-center p-5 h-100 ">
+
+      <div class="bg-wrap col-md-12 justify-content-center m-0 p-0 rounded row wrapper">
+        <div class="col-sm-12 justify-content-center p-0 row">
+          <button class="slider-button" onclick="changeSlide('note')">Notes</button>
+          <button class="slider-button" onclick="changeSlide('QB')">Question Banks</button>
+          <button class="slider-button" onclick="changeSlide('YT')">Video Links</button>
+        </div>
+        <div class="col-md-12 justify-content-start row">
+          <div class="h2 p-4"> Module Notes</div>
+          <div class="d-flex flex-column py-4 w-100">
+
+            <!-- <div class="module" id="note">
+
+            </div> -->
+            <div class="module d-flex" id="note">
+
+              <div class="card">
+                <div class="align-items-lg-start container flex-column h-100">
+                  <!-- Edit Modal -->
+                  <div class="modal-edit" style="padding-top: -100px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      Edit
+                    </button>
+
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Message</label>
+                                <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Links</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Delete Modal -->
+                    <div class="modal-delete">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                        Delete
+                      </button>
+
+                      <div class="modal" id="myModal1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Details</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Message</label>
+                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Links</label>
+                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h3" style="margin-top: -100px;">0:- Prerequisite:
+                  </div>
+                  <ul class="message overflow-auto pl-5 w-100">
+                    <li><b>1 Basic Knowledge of databases </b> All the basic operation of db <a
+                        href="https://drive.google.com/file/d/1ey0NmU-b5Scm3Y0UNv7R3Rk2DT2Bs9z9/view" target="_blank"
+                        style="display: none;"></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="align-items-lg-start container flex-column h-100">
+                  <!-- Edit Modal -->
+                  <div class="modal-edit" style="padding-top: -100px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      Edit
+                    </button>
+
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Message</label>
+                                <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Links</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Delete Modal -->
+                    <div class="modal-delete">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                        Delete
+                      </button>
+
+                      <div class="modal" id="myModal1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Details</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Message</label>
+                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Links</label>
+                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h3" style="margin-top: -35px;">1:- Data Warehouse (DWH) Fundamentals <br>with
+                    Introduction to Data Mining: -</div>
+                  <ul class="message overflow-auto pl-5 w-100">
+                    <li><b>1 DWH characteristics</b> Basic <a href="www.google.com" target="_blank"
+                        style="display: none;"></a></li>
+                    <li><b>2 Dimensional modeling</b> All types od Dimensional model All types od Dimensional model All
+                      types od Dimensional model All types od Dimensional model All types od Dimensional model All types
+                      od Dimensional model All types od Dimensional model All types od Dimensional model All types od
+                      Dimensional model All types od Dimensional model All types od Dimensional model All types od
+                      Dimensional model All types od Dimensional model All types od Dimensional model <a
+                        href="www.google.com" target="_blank" style="display: none;"></a></li>
+                    <li><b>3 Dimensional modeling</b> All types od Dimensional model <a href="www.google.com"
+                        target="_blank" style="display: none;"></a></li>
+                    <li><b>4 Dimensional modeling</b> All types od Dimensional model <a href="www.google.com"
+                        target="_blank" style="display: none;"></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="align-items-lg-start container flex-column h-100">
+                  <!-- Edit Modal -->
+                  <div class="modal-edit" style="padding-top: -100px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      Edit
+                    </button>
+
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Message</label>
+                                <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Links</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Delete Modal -->
+                    <div class="modal-delete">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                        Delete
+                      </button>
+
+                      <div class="modal" id="myModal1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Details</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Message</label>
+                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Links</label>
+                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h3" style="margin-top: -90px;">2:- Data Exploration and Data Preprocessing: -</div>
+                  <ul class="message overflow-auto pl-5 w-100">
+                    <li><b>1 Types of Attributes,</b> starting the subject <a href="www.google.com" target="_blank"
+                        style="display: none;"></a></li>
+                    <li><b>2 Statistical Description of Data</b> starting the subject <a href="www.google.com"
+                        target="_blank" style="display: none;"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="d-none flex-column flex-nowrap qb" id="QB">
+              <div class="card">
+                <div class="align-items-lg-start container flex-column h-100">
+                  <!-- Edit Modal -->
+                  <div class="modal-edit" style="padding-top: -100px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      Edit
+                    </button>
+
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Message</label>
+                                <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Links</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Delete Modal -->
+                    <div class="modal-delete">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                        Delete
+                      </button>
+
+                      <div class="modal" id="myModal1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Details</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Message</label>
+                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Links</label>
+                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h3" style="margin-top: -40px;">OB 1 :-(name of the module)</div>
+                  <ul class="d-flex flex-column flex-nowrap message overflow-auto pl-5 w-100">
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="align-items-lg-start container flex-column h-100">
+                  <!-- Edit Modal -->
+                  <div class="modal-edit" style="padding-top: -100px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      Edit
+                    </button>
+
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Message</label>
+                                <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                              </div>
+                              <div class="form-group">
+                                <label for="text">Links</label>
+                                <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Delete Modal -->
+                    <div class="modal-delete">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                        Delete
+                      </button>
+
+                      <div class="modal" id="myModal1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Details</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Message</label>
+                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                                </div>
+                                <div class="form-group">
+                                  <label for="text">Links</label>
+                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h3" style="margin-top: -100px;">Module 2:-(name of the module)</div>
+                  <ul class="message overflow-auto pl-5">
+                    <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
+                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="index.js"></script>
+    <script>
+      function changeSlide(div) {
+        let arr = ['note', 'QB']
+        for (let i of arr) {
+          console.log(i)
+          if (i == div) {
+            document.getElementById(i).classList.add('d-flex')
+            document.getElementById(i).classList.remove('d-none')
+          }
+          else {
+            document.getElementById(i).classList.remove('d-flex')
+            document.getElementById(i).classList.add('d-none')
+          }
+        }
+      }
+    </script>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
