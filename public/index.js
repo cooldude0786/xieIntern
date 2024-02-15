@@ -12,6 +12,21 @@ const firebaseConfig = {
     appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
     measurementId: "G-YT3MV5GCBY"
 };
+function changeSlide(div) {
+    let arr = ['note', 'QB']
+    for (let i of arr) {
+        console.log(i)
+        if (i == div) {
+            document.getElementById(i).classList.add('d-flex')
+            document.getElementById(i).classList.remove('d-none')
+        }
+        else {
+            document.getElementById(i).classList.remove('d-flex')
+            document.getElementById(i).classList.add('d-none')
+        }
+    }
+}
+
 const app = await initializeApp(firebaseConfig);
 
 const db = await ref(getDatabase(app));
@@ -39,16 +54,16 @@ function InsertingLink() {
     update(ref(db, 'sem6/Module/chap1/data'), {
         // name: 'Data Warehouse (DWH) Fundamentals with Introduction to Data Mining',
         // data: {
-            // 0: {
-            //     link: 'www.google.com',
-            //     msg: 'Basic ',
-            //     title: 'DWH characteristics'
-            // },
-            3: {
-                link: 'www.google.com',
-                msg: 'All types od Dimensional model',
-                title: 'Dimensional modeling'
-            },
+        // 0: {
+        //     link: 'www.google.com',
+        //     msg: 'Basic ',
+        //     title: 'DWH characteristics'
+        // },
+        3: {
+            link: 'www.google.com',
+            msg: 'All types od Dimensional model',
+            title: 'Dimensional modeling'
+        },
         // }
     });
 }
@@ -96,7 +111,7 @@ function addActionToLi() {
             // Open a new tab with the URL from the anchor tag
             window.open(anchorTag.href, '_blank');
         });
-    });  
+    });
 
 
 

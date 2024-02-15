@@ -4,8 +4,8 @@
 }
 
 .header {
-    height: 80px;
-    background-color: #283FB6;
+    height: 110px;
+    font-size: 35px;
 }
 
 .header span {
@@ -215,9 +215,6 @@ height: fit-content;}
     font-family: Inter;
 }
 
-
-
-
 .editButton {
     width: 34px;
     height: 32px;
@@ -286,5 +283,6 @@ height: fit-content;}
     gap: 16px;
 }
 .message li{
+    width: fit-content;
     cursor: pointer;
 }

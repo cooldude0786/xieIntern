@@ -35,12 +35,7 @@
         <div class="col-md-12 justify-content-start row">
           <div class="h2 p-4"> Module Notes</div>
           <div class="d-flex flex-column py-4 w-100">
-
-            <!-- <div class="module" id="note">
-
-            </div> -->
             <div class="module d-flex" id="note">
-
               <div class="card">
                 <div class="align-items-lg-start container flex-column h-100">
                   <div class="h3">0:- Prerequisite: -</div>
@@ -114,24 +109,26 @@
         </div>
       </div>
     </div>
-    
-    <script type="module" src="index.js"></script>
-    <script>
-      function changeSlide(div) {
-        let arr = ['note', 'QB']
-        for (let i of arr) {
-          console.log(i)
-          if (i == div) {
-            document.getElementById(i).classList.add('d-flex')
-            document.getElementById(i).classList.remove('d-none')
-          }
-          else {
-            document.getElementById(i).classList.remove('d-flex')
-            document.getElementById(i).classList.add('d-none')
-          }
+  </div>
+
+
+  <script type="module" src="index.js"></script>
+  <!-- <script>
+    function changeSlide(div) {
+      let arr = ['note', 'QB']
+      for (let i of arr) {
+        console.log(i)
+        if (i == div) {
+          document.getElementById(i).classList.add('d-flex')
+          document.getElementById(i).classList.remove('d-none')
+        }
+        else {
+          document.getElementById(i).classList.remove('d-flex')
+          document.getElementById(i).classList.add('d-none')
         }
       }
-    </script>
+    }
+  </script> -->
 </body>
 
 </html>

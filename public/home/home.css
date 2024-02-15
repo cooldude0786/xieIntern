@@ -1,0 +1,13 @@
+.header {
+    height: 110px;
+    font-size: 35px;
+}
+
+.header span {
+    padding-left: 25px;
+    font-size: 25px;
+    color: azure;
+}
+.box-shadow{
+    box-shadow: 0 0.5rem 2rem rgba(0,19,8,.4)!important;
+}
