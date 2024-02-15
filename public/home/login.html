@@ -163,7 +163,7 @@ header {
     </header>
     
 
-    <form method="post">
+    <form id="loginForm" method="post" onsubmit="return validateloginForm()">
         <h3>Login Here</h3>
        
         <label for="username">Username</label>
@@ -180,5 +180,7 @@ header {
         </div> -->
         <a href="signup.html" >Create a account</a>
     </form>
+
+    <script src="validate.js"></script>
 </body>
 </html>

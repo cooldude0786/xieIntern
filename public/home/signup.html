@@ -137,7 +137,7 @@ header {
         </header>
     
     
-    <form method="post">
+    <form id="signupForm" method="post" onsubmit="return validatesignupForm()">
      
         <h3>Signup Here</h3>
 
@@ -156,5 +156,7 @@ header {
         <button type="submit">Signup</button>
         <a href="login.html" >i have already account</a>
     </form>
+
+    <script src="validate.js"></script>
 </body>
 </html>
