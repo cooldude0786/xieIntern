@@ -20,19 +20,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     // deleteSubjectKey('ITL605');
     // InsertingLink();
 
-    var resultData = await GetAllDataFromDB();
-    // console.log(a);
-    for (let i in resultData) {
-        // inside the specfic Module. 
-        let Module = resultData[i]
-        for (let Chapters in Module) {
-            // Looping throught the chapters
-            let chapter = Module[Chapters]
-            console.log(chapter.name, chapter.data);
-            generateAndAppendCard(Chapters[Chapters.length - 1], chapter.name, chapter.data)
-        }
-    }
-    addActionToLi();
+    // var resultData = await GetAllDataFromDB();
+    // // console.log(a);
+    // for (let i in resultData) {
+    //     // inside the specfic Module. 
+    //     let Module = resultData[i]
+    //     for (let Chapters in Module) {
+    //         // Looping throught the chapters
+    //         let chapter = Module[Chapters]
+    //         console.log(chapter.name, chapter.data);
+    //         generateAndAppendCard(Chapters[Chapters.length - 1], chapter.name, chapter.data)
+    //     }
+    // }
+    // addActionToLi();
 });
 function InsertingLink() {
     const db = getDatabase();
