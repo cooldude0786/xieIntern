@@ -47,7 +47,84 @@
           <button class="slider-button" onclick="changeSlide('YT')">Video Links</button>
         </div>
         <div class="col-md-12 justify-content-start row">
-          <div class="h2 p-4"> Module Notes</div>
+          <div class="h2 p-4"> Module Notes
+            <!-- Edit Modal -->
+            <div class="modal-edit" style="margin-top: -43px;">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                style="display: flex;">
+                Edit
+              </button>
+
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit Details</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                          <label for="text">Message</label>
+                          <input type="text" class="form-control" id="message" placeholder="Enter the message">
+                        </div>
+                        <div class="form-group">
+                          <label for="text">Links</label>
+                          <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!-- Delete Modal -->
+              <div class="modal-delete" style="margin-top: -5px;">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                  Remove
+                </button>
+
+                <div class="modal" id="myModal1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <h4 class="modal-title">Delete the content</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label for="name">Module</label>
+                            <input type="text" class="form-control" id="moduleid" placeholder="Enter the Module id">
+                          </div>
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="d-flex flex-column py-4 w-100">
 
             <!-- <div class="module" id="note">
@@ -76,7 +153,7 @@
                             <form>
                               <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                <input type="text" class="form-control" id="fileid" placeholder="Enter your name">
                               </div>
                               <div class="form-group">
                                 <label for="text">Message</label>
@@ -108,23 +185,16 @@
                           <div class="modal-content">
 
                             <div class="modal-header">
-                              <h4 class="modal-title">Edit Details</h4>
+                              <h4 class="modal-title">Delete the content</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="modal-body">
                               <form>
                                 <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Message</label>
-                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Links</label>
-                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                  <label for="name">Content ID</label>
+                                  <input type="text" class="form-control" id="contentid"
+                                    placeholder="Enter the content id">
                                 </div>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
@@ -201,23 +271,16 @@
                           <div class="modal-content">
 
                             <div class="modal-header">
-                              <h4 class="modal-title">Edit Details</h4>
+                              <h4 class="modal-title">Delete the content</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="modal-body">
                               <form>
                                 <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Message</label>
-                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Links</label>
-                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                  <label for="name">Content ID</label>
+                                  <input type="text" class="form-control" id="contentid"
+                                    placeholder="Enter the content id">
                                 </div>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
@@ -303,23 +366,16 @@
                           <div class="modal-content">
 
                             <div class="modal-header">
-                              <h4 class="modal-title">Edit Details</h4>
+                              <h4 class="modal-title">Delete the content</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="modal-body">
                               <form>
                                 <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Message</label>
-                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Links</label>
-                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                  <label for="name">Content ID</label>
+                                  <input type="text" class="form-control" id="contentid"
+                                    placeholder="Enter the content id">
                                 </div>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
@@ -349,11 +405,11 @@
                 <div class="align-items-lg-start container flex-column h-100">
                   <!-- Edit Modal -->
                   <div class="modal-edit" style="padding-top: -100px;">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
                       Edit
                     </button>
 
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="editModal">
                       <div class="modal-dialog">
                         <div class="modal-content">
 
@@ -389,32 +445,25 @@
                     </div>
                     <!-- Delete Modal -->
                     <div class="modal-delete">
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                         Delete
                       </button>
 
-                      <div class="modal" id="myModal1">
+                      <div class="modal" id="deleteModal">
                         <div class="modal-dialog">
                           <div class="modal-content">
 
                             <div class="modal-header">
-                              <h4 class="modal-title">Edit Details</h4>
+                              <h4 class="modal-title">Delete the content</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="modal-body">
                               <form>
                                 <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Message</label>
-                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Links</label>
-                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                  <label for="name">Content ID</label>
+                                  <input type="text" class="form-control" id="contentid"
+                                    placeholder="Enter the content id">
                                 </div>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
@@ -440,7 +489,7 @@
                     <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
                         target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
                     <li><b>Cesear cipher</b> sdfhisafdghsidfbkjasdf asdfas <a href="https://www.google.com"
-                        target="_blank" rel="noopener noreferrer" style="display: none;"></a> </li>
+                        target="_blank" rel="noopener noreferrer" sty`le="display: none;"></a> </li>
                   </ul>
                 </div>
               </div>
@@ -448,11 +497,11 @@
                 <div class="align-items-lg-start container flex-column h-100">
                   <!-- Edit Modal -->
                   <div class="modal-edit" style="padding-top: -100px;">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
                       Edit
                     </button>
 
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="editModal">
                       <div class="modal-dialog">
                         <div class="modal-content">
 
@@ -488,32 +537,25 @@
                     </div>
                     <!-- Delete Modal -->
                     <div class="modal-delete">
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                         Delete
                       </button>
 
-                      <div class="modal" id="myModal1">
+                      <div class="modal" id="deleteModal">
                         <div class="modal-dialog">
                           <div class="modal-content">
 
                             <div class="modal-header">
-                              <h4 class="modal-title">Edit Details</h4>
+                              <h4 class="modal-title">Delete the content</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="modal-body">
                               <form>
                                 <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Message</label>
-                                  <input type="text" class="form-control" id="message" placeholder="Enter the message">
-                                </div>
-                                <div class="form-group">
-                                  <label for="text">Links</label>
-                                  <input type="text" class="form-control" id="text" placeholder="Enter the links">
+                                  <label for="name">Content ID</label>
+                                  <input type="text" class="form-control" id="contentid"
+                                    placeholder="Enter the content id">
                                 </div>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
