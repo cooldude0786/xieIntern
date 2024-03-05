@@ -7,7 +7,7 @@ let data = [
     { srno: 3, username: "Hello3", email: "hello3@xavier.ac.in", status: null },
 ];
 for (let i of data) {
-    console.log(i.srno,i.username,i.email);
+    // console.log(i.srno,i.username,i.email);
     addToHTML(i.srno,i.username,i.email);
 }
 
@@ -127,5 +127,5 @@ const deleteFromData = (id) => {
     if (index !== -1) {
         data.splice(index, 1);
     }
-    console.log(data);
+    // console.log(data);
 }
