@@ -62,23 +62,32 @@
 
     <div class="teacherinfo">
       <div id="hod">
-        <div class="card mb-3 mx-auto" style="max-width: 80%;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img class="img-fluid rounded-start skeleton teachericon" alt="">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title skeleton skeleton-title"></h5>
-                <p class="card-text skeleton skeleton-text"></p>
-                <p class="card-text skeleton skeleton-text"></p>
-                <p class="card-text  skeleton skeleton-text"><small class="text-body-secondary"></small></p>
+          <div class="card mb-3 mx-auto" style="max-width: 80%; max-height: 300px;">
+              <div class="row g-0">
+                  <div class="col-md-4">
+                      <img id="teacherIcon" class="img-fluid rounded-start skeleton teachericon" alt="">
+                  </div>
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <h1 class="card-title skeleton skeleton-title"></h1>
+                          <h4 class="card-text skeleton skeleton-text"></h4>
+                          <h7 class="card-text skeleton skeleton-text"></h7>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>    
+      <template id="card-template">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top skeleton teachericon" alt="">
+              <div class="card-body">
+                  <h1 class="card-title skeleton skeleton-title"></h1>
+                  <h4 class="card-text skeleton skeleton-text"></h4>
+                  <h7 class="card-text skeleton skeleton-text"></h7>
+              </div>
+          </div>
+      </template>
+  </div>        
 
     <footer class="text-white text-center text-lg-start" style="background-color: #007bff;">
       <div class="container p-4">
