@@ -32,7 +32,7 @@
   
   .skeleton-title {
     width: 50%;
-    height: 2rem;
+    height: 2.125rem;
     border-radius: 0.25rem;
   }
   
@@ -43,8 +43,8 @@
     border-radius: 0.25rem;
   }
 
-  .teachericon{
-    width: 100%;
-    height: 300px;
-    border-radius: 0.25rem;
+  .teachericon{ 
+    border-radius: 0.5rem;
+    max-height: 400px;
   }
+
