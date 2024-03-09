@@ -98,7 +98,7 @@ fetch("data.json")
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title skeleton skeleton-title">${post.name}</h5>
-                            <p class="card-text skeleton skeleton-text">${post.position}</p>
+                            <h6 class="card-text skeleton skeleton-text">${post.position}</h6>
                             <p class="card-text skeleton skeleton-text">${post.education}</p>
                         </div>
                     </div>
