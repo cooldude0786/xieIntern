@@ -78,6 +78,42 @@ function renderSubjects() {
     }
 }
 
+const teacherInfo = document.querySelector(".teacherinfo");
+const hod = document.getElementById("hod");
+
+fetch("data.json")
+    .then((response) => response.json())
+    .then((posts) => {
+        teacherInfo.innerHTML = "";
+        posts.forEach((post) => {
+            const div = document.createElement("div");
+            div.className = "card mb-3 mx-auto";
+            div.style.maxWidth = "80%";
+
+            div.innerHTML = `
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="img-fluid rounded-start skeleton teachericon" src="${post.profileImage}" alt="${post.name}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title skeleton skeleton-title">${post.name}</h5>
+                            <p class="card-text skeleton skeleton-text">${post.position}</p>
+                            <p class="card-text skeleton skeleton-text">${post.education}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            div.querySelectorAll('.teachericon, .card-title, .card-text').forEach(element => {
+                element.classList.remove('skeleton');
+            });
+
+            teacherInfo.appendChild(div);
+        });
+    });
+
+
 
 // Images to be added
 // var imageSources = ['img/3.jpg', 'img/2.jpg', 'img/1.jpg'];
