@@ -1,18 +1,74 @@
-const tbody = document.querySelector("tbody");
-const addBtn = document.querySelector(".addBtn");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+import { getDatabase, ref, set, child, get, remove, update } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
+    authDomain: "xieresource.firebaseapp.com",
+    databaseURL: "https://xieresource-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "xieresource",
+    storageBucket: "xieresource.appspot.com",
+    messagingSenderId: "624733959118",
+    appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
+    measurementId: "G-YT3MV5GCBY"
+};
+
+const app = initializeApp(firebaseConfig);
+const db =  ref(getDatabase(app));
+document.addEventListener('DOMContentLoaded', async function () {
+
+});
+function getAllUser() {
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+
+            get(child(db, 'users/granted'))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    resolve({ data: snapshot.val() });
+                } else {
+                    resolve({ err: "no data found" });
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                reject(error); // Reject the promise if there's an error
+            });
+        },0)
+    });
+}
+
+document.getElementById('RegisterUserBtn').addEventListener("click", async () => {
+    document.getElementById('loadercontain').classList.remove('d-none')
+    try {
+        let result = await getAllUser();
+        result = result.data
+        
+        // for(i of result.data){
+        //     addRecords()
+        // }
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+    document.getElementById('loadercontain').classList.add('d-none')
+});
+
+
+// const tbody = document.getElementById("requestedTable");
+const addBtn = document.getElementById("addRequestedUser");
 
 let data = [
-    { srno: 1, username: "Hello1", email: "hello@xavier.ac.in", status: null },
+    { srno: 1, username: "Hesedllo1", email: "hello@xavier.ac.in", status: null },
     { srno: 2, username: "Hello2", email: "hello2@xavier.ac.in", status: null },
     { srno: 3, username: "Hello3", email: "hello3@xavier.ac.in", status: null },
 ];
 for (let i of data) {
     // console.log(i.srno,i.username,i.email);
-    addToHTML(i.srno,i.username,i.email);
+    addRecords(i.srno,i.username,i.email,"requestedTable");
 }
 
-function addToHTML(srno, username, email) {
-    const tbody = document.querySelector('tbody'); // Assuming tbody exists in your HTML structure
+function addRecords(srno, username, email,table_id) {
+    const tbody = document.getElementById(table_id);
 
     const row = document.createElement("tr");
     row.setAttribute("id", srno);
@@ -96,36 +152,36 @@ const rejectBtn = document.querySelectorAll(".rejectBtn");
 
 
 // Event delegation for accepting or rejecting
-tbody.addEventListener("click", (e) => {
-    if (e.target.classList.contains("acceptBtn")) {
-        let acceptRow = e.target.parentElement.parentElement.parentElement;
-        let acceptRowId = acceptRow.getAttribute("id");
-        let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
-        currStatus.innerText = "Accepted";
-        updateStatus(acceptRowId, currStatus.innerText);
-    } else if (e.target.classList.contains("rejectBtn")) {
-        let rejectRow = e.target.parentElement.parentElement.parentElement;
-        let rejectRowId = rejectRow.getAttribute("id");
-        rejectRow.remove();
-        console.log(rejectRowId);
-        deleteFromData(rejectRowId);
-    }
-});
+// tbody.addEventListener("click", (e) => {
+//     if (e.target.classList.contains("acceptBtn")) {
+//         let acceptRow = e.target.parentElement.parentElement.parentElement;
+//         let acceptRowId = acceptRow.getAttribute("id");
+//         let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
+//         currStatus.innerText = "Accepted";
+//         updateStatus(acceptRowId, currStatus.innerText);
+//     } else if (e.target.classList.contains("rejectBtn")) {
+//         let rejectRow = e.target.parentElement.parentElement.parentElement;
+//         let rejectRowId = rejectRow.getAttribute("id");
+//         rejectRow.remove();
+//         console.log(rejectRowId);
+//         deleteFromData(rejectRowId);
+//     }
+// });
 
 
-const updateStatus = (id, currStatus) => {
-    data.forEach((row) => {
-        if (row.srno == id) {
-            console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
-            row.status = currStatus;
-        }
-    });
+// const updateStatus = (id, currStatus) => {
+//     data.forEach((row) => {
+//         if (row.srno == id) {
+//             console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
+//             row.status = currStatus;
+//         }
+//     });
 
-}
-const deleteFromData = (id) => {
-    const index = data.findIndex(row => row.srno === parseInt(id));
-    if (index !== -1) {
-        data.splice(index, 1);
-    }
-    // console.log(data);
-}
+// }
+// const deleteFromData = (id) => {
+//     const index = data.findIndex(row => row.srno === parseInt(id));
+//     if (index !== -1) {
+//         data.splice(index, 1);
+//     }
+//     // console.log(data);
+// }
