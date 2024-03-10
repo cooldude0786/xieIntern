@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getDatabase, ref, set, child, get, remove, update } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { getDatabase, ref, set, child, get, remove, update, push } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
@@ -11,38 +11,96 @@ const firebaseConfig = {
     appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
     measurementId: "G-YT3MV5GCBY"
 };
-
 const app = initializeApp(firebaseConfig);
-const db =  ref(getDatabase(app));
+const db = ref(getDatabase(app));
 document.addEventListener('DOMContentLoaded', async function () {
+    // const app = initializeApp(firebaseConfig)
+    // const db = getDatabase();
+    let result = await getAllTeachersDetails()
+    console.log(result);
+    // push(ref(db, 'testuser'), {
+    //     name:'asdasd',
+    //     post:'Assistant Professor',
+    //     phNumber: 1000012504,
+    //     edubg:'M.E. (Computer Engineering)',
+    //     email:'sdas@xavier.ac.in'
+    // }).then((data) => {
+    //     console.log("done push", data);
+    // });
+    // app.getDatabase().ref('testuser').push({name:"khizar"})
 
+    
 });
-function getAllUser() {
-    return new Promise((resolve, reject) => {
-        setTimeout(()=>{
-
-            get(child(db, 'users/granted'))
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    resolve({ data: snapshot.val() });
-                } else {
-                    resolve({ err: "no data found" });
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                reject(error); // Reject the promise if there's an error
-            });
-        },0)
-    });
+async function addData2(data) {
+    try {
+        const postListRef = ref(db, 'posts');
+        const newPostRef = push(postListRef);
+        set(newPostRef, {
+            name: "khizar",
+            value: "most important"
+        });
+        //   const newDataRef = push(ref(db, 'testuser')); // Adjust the path to your data collection
+        await set(newDataRef, data).then(() => {
+            console.log("done");
+        })
+        console.log('Data added successfully with key:', newDataRef.key);
+    } catch (error) {
+        console.error('Error adding data:', error);
+    }
 }
 
+// Example usage
+const exampleData = {
+    name: "khizar",
+    value: "most important"
+};
+
+// addData2(exampleData);
+function getAllUser() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+
+            get(child(db, 'users/granted'))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        resolve({ data: snapshot.val() });
+                    } else {
+                        resolve({ err: "no data found" });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    reject(error); // Reject the promise if there's an error
+                });
+        }, 2000)
+    });
+}
+function getAllTeachersDetails() {
+    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+
+            get(child(db, 'testuser/'))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        resolve({ data: snapshot.val() });
+                    } else {
+                        resolve({ err: "no data found" });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    reject(error); // Reject the promise if there's an error
+                });
+        }, 2000)
+    });
+}
 document.getElementById('RegisterUserBtn').addEventListener("click", async () => {
     document.getElementById('loadercontain').classList.remove('d-none')
     try {
         let result = await getAllUser();
         result = result.data
-        
+
         // for(i of result.data){
         //     addRecords()
         // }
@@ -64,10 +122,10 @@ let data = [
 ];
 for (let i of data) {
     // console.log(i.srno,i.username,i.email);
-    addRecords(i.srno,i.username,i.email,"requestedTable");
+    addRecords(i.srno, i.username, i.email, "requestedTable");
 }
 
-function addRecords(srno, username, email,table_id) {
+function addRecords(srno, username, email, table_id) {
     const tbody = document.getElementById(table_id);
 
     const row = document.createElement("tr");
