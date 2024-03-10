@@ -9,9 +9,9 @@
     {
         "id": 2,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/14022020153727.png",
-        "name": "Chhaya Dipak Dhavale",
+        "name": "Chhaya Dhavale",
         "position": "Assistant Professor",
-        "education": "M.E.(Computer Engg.)Pursuing PhD (Info.Tech.)"
+        "education": "M.E.(Computer Engg.)"
     },
     {
         "id": 3,
@@ -32,7 +32,7 @@
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/10012020151526.png",
         "name": "Jyotsna More",
         "position": "Assistant Professor",
-        "education": ""
+        "education": "M.E. (Computer Engineering)"
     },
     {
         "id": 6,

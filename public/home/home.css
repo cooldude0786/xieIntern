@@ -48,3 +48,15 @@
     max-height: 400px;
   }
 
+  .teacherinfo{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .flex-item{
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      margin: auto;
+      text-align: center;
+  }

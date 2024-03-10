@@ -101,12 +101,12 @@ fetch("data.json")
     function addTeacherCard(profileImage, name, position, education) {
         const div = document.createElement("div");
         div.className = "card mb-3 mx-auto";
-        div.style.maxWidth = "80%";
+        div.style.maxWidth = "90%";
     
         if (!isFirstCard) {
             // Change structure for subsequent cards
-            div.className = "card";
-            div.style.width = "18rem";
+            div.className = "card flex-item";
+            div.style.width = "22rem";
             div.innerHTML = `
                 <img src="${profileImage}" class="card-img-top" alt="${name}">
                 <div class="card-body">
