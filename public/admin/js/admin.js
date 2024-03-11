@@ -1,3 +1,4 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
 import { getDatabase, ref, set, child, get, remove, update, push } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -108,8 +109,9 @@ document.getElementById('RegisterUserBtn').addEventListener("click", async () =>
 // const tbody = document.getElementById("requestedTable");
 const addBtn = document.getElementById("addRequestedUser");
 
+
 let data = [
-    { srno: 1, username: "Hesedllo1", email: "hello@xavier.ac.in", status: null },
+    { srno: 1, username: "Hello1", email: "hello@xavier.ac.in", status: null },
     { srno: 2, username: "Hello2", email: "hello2@xavier.ac.in", status: null },
     { srno: 3, username: "Hello3", email: "hello3@xavier.ac.in", status: null },
 ];
@@ -120,6 +122,7 @@ for (let i of data) {
 
 function addRecords(srno, username, email, table_id) {
     const tbody = document.getElementById(table_id);
+
 
     const row = document.createElement("tr");
     row.setAttribute("id", srno);
@@ -264,36 +267,36 @@ function replaceInvalidCharsAndBeyond(str) {
 }
 
 // Event delegation for accepting or rejecting
-// tbody.addEventListener("click", (e) => {
-//     if (e.target.classList.contains("acceptBtn")) {
-//         let acceptRow = e.target.parentElement.parentElement.parentElement;
-//         let acceptRowId = acceptRow.getAttribute("id");
-//         let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
-//         currStatus.innerText = "Accepted";
-//         updateStatus(acceptRowId, currStatus.innerText);
-//     } else if (e.target.classList.contains("rejectBtn")) {
-//         let rejectRow = e.target.parentElement.parentElement.parentElement;
-//         let rejectRowId = rejectRow.getAttribute("id");
-//         rejectRow.remove();
-//         console.log(rejectRowId);
-//         deleteFromData(rejectRowId);
-//     }
-// });
+tbody.addEventListener("click", (e) => {
+    if (e.target.classList.contains("acceptBtn")) {
+        let acceptRow = e.target.parentElement.parentElement.parentElement;
+        let acceptRowId = acceptRow.getAttribute("id");
+        let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
+        currStatus.innerText = "Accepted";
+        updateStatus(acceptRowId, currStatus.innerText);
+    } else if (e.target.classList.contains("rejectBtn")) {
+        let rejectRow = e.target.parentElement.parentElement.parentElement;
+        let rejectRowId = rejectRow.getAttribute("id");
+        rejectRow.remove();
+        console.log(rejectRowId);
+        deleteFromData(rejectRowId);
+    }
+});
 
 
-// const updateStatus = (id, currStatus) => {
-//     data.forEach((row) => {
-//         if (row.srno == id) {
-//             console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
-//             row.status = currStatus;
-//         }
-//     });
+const updateStatus = (id, currStatus) => {
+    data.forEach((row) => {
+        if (row.srno == id) {
+            console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
+            row.status = currStatus;
+        }
+    });
 
-// }
-// const deleteFromData = (id) => {
-//     const index = data.findIndex(row => row.srno === parseInt(id));
-//     if (index !== -1) {
-//         data.splice(index, 1);
-//     }
-//     // console.log(data);
-// }
+}
+const deleteFromData = (id) => {
+    const index = data.findIndex(row => row.srno === parseInt(id));
+    if (index !== -1) {
+        data.splice(index, 1);
+    }
+    // console.log(data);
+}

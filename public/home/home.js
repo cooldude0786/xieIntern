@@ -78,6 +78,73 @@ function renderSubjects() {
     }
 }
 
+const teacherInfo = document.querySelector(".teacherinfo");
+const hod = document.getElementById("hod");
+
+const cardTemplate = document.getElementById("card-template");
+for (let i = 0; i < 9; i++) {
+    const clonedTemplate = cardTemplate.content.cloneNode(true);
+    teacherInfo.appendChild(clonedTemplate);
+}
+
+fetch("data.json")
+    .then((response) => response.json())
+    .then((data) => {
+        teacherInfo.innerHTML = ""; // Clear existing content before adding new cards
+        data.forEach((teacher) => {
+            addTeacherCard(teacher.profileImage, teacher.name, teacher.position, teacher.education);
+        });
+    });
+
+    let isFirstCard = true;
+
+    function addTeacherCard(profileImage, name, position, education) {
+        const div = document.createElement("div");
+        div.className = "card mb-3 mx-auto";
+        div.style.maxWidth = "90%";
+    
+        if (!isFirstCard) {
+            // Change structure for subsequent cards
+            div.className = "card flex-item";
+            div.style.width = "22rem";
+            div.innerHTML = `
+                <img src="${profileImage}" class="card-img-top" alt="${name}">
+                <div class="card-body">
+                    <h1 class="card-title">${name}</h1>
+                    <h4 class="card-text">${position}</h4>
+                    <h7 class="card-text">${education}</h7>
+                </div>
+            `;
+        } else {
+            // Original structure for the first card
+            div.innerHTML = `
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="img-fluid rounded-start teachericon" src="${profileImage}" alt="${name}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h1 class="card-title">${name}</h1>
+                            <h4 class="card-text">${position}</h4>
+                            <h7 class="card-text">${education}</h7>
+                        </div>
+                    </div>
+                </div>
+            `;
+            isFirstCard = false;
+        }
+    
+        div.querySelectorAll('.teachericon, .card-img-top, .card-title, .card-text').forEach(element => {
+            element.classList.remove('skeleton');
+        });
+    
+        teacherInfo.appendChild(div);
+    }
+    
+
+
+
+
 
 // Images to be added
 // var imageSources = ['img/3.jpg', 'img/2.jpg', 'img/1.jpg'];
