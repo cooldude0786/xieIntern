@@ -15,48 +15,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = ref(getDatabase(app));
 document.addEventListener('DOMContentLoaded', async function () {
-    // const app = initializeApp(firebaseConfig)
-    // const db = getDatabase();
-    let result = await getAllTeachersDetails()
-    console.log(result);
-    // push(ref(db, 'testuser'), {
-    //     name:'asdasd',
-    //     post:'Assistant Professor',
-    //     phNumber: 1000012504,
-    //     edubg:'M.E. (Computer Engineering)',
-    //     email:'sdas@xavier.ac.in'
-    // }).then((data) => {
-    //     console.log("done push", data);
-    // });
-    // app.getDatabase().ref('testuser').push({name:"khizar"})
-
-    
+    // let re = await makeGrantedStudentEntry('khizarshaikh2922@gmail.com','khizar shaikh','asdasdasd',true)
+    // console.log(re);
 });
-async function addData2(data) {
+async function makeGrantedStudentEntry(email, name, hascode) {
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const sanitizedEmail = replaceInvalidCharsAndBeyond(email);
+    const userRef = ref(db, `users/granted/${sanitizedEmail}`);
+
     try {
-        const postListRef = ref(db, 'posts');
-        const newPostRef = push(postListRef);
-        set(newPostRef, {
-            name: "khizar",
-            value: "most important"
-        });
-        //   const newDataRef = push(ref(db, 'testuser')); // Adjust the path to your data collection
-        await set(newDataRef, data).then(() => {
-            console.log("done");
-        })
-        console.log('Data added successfully with key:', newDataRef.key);
+        // Check if the user already exists
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            return { success: false, message: "User already exists" };
+        } else {
+            // If the user does not exist, proceed with setting the record
+            await set(userRef, {
+                name: name,
+                email: email,
+                hascode: hascode,
+                status: true
+            });
+            return { success: true, message: "Record set successfully" };
+        }
     } catch (error) {
-        console.error('Error adding data:', error);
+        return { success: false, message: "Error: " + error.message };
     }
 }
 
-// Example usage
-const exampleData = {
-    name: "khizar",
-    value: "most important"
-};
-
-// addData2(exampleData);
 function getAllUser() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -77,7 +64,7 @@ function getAllUser() {
     });
 }
 function getAllTeachersDetails() {
-    
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
 
@@ -93,7 +80,7 @@ function getAllTeachersDetails() {
                     console.error(error);
                     reject(error); // Reject the promise if there's an error
                 });
-        }, 2000)
+        }, 0)
     });
 }
 document.getElementById('RegisterUserBtn').addEventListener("click", async () => {
@@ -101,11 +88,17 @@ document.getElementById('RegisterUserBtn').addEventListener("click", async () =>
     try {
         let result = await getAllUser();
         result = result.data
-
+        const tableBody = document.getElementById('registerUserTable')
+        tableBody.innerHTML = ''; // Clear tbody before populating
+        let n = 1
+        for (let i in result) {
+            let j = result[i]
+            insertDataRegisterUser(j.name, j.email, i, j.status, 'registerUserTable', n)
+            n++
+        }
         // for(i of result.data){
         //     addRecords()
         // }
-        console.log(result);
     } catch (error) {
         console.error(error);
     }
@@ -174,6 +167,54 @@ function addRecords(srno, username, email, table_id) {
     tbody.appendChild(row);
 }
 
+function insertDataRegisterUser(name, email, id, status, table_id, count) {
+    const table = document.getElementById(table_id);
+    if (!table) {
+        console.error("Table with provided ID not found");
+        return null;
+    }
+
+    const tableRow = document.createElement("tr");
+    tableRow.id = id;
+    tableRow.className = "placeholder-glow";
+
+    const indexCell = document.createElement("th");
+    indexCell.scope = "row";
+    indexCell.textContent = count;
+
+    const nameCell = document.createElement("td");
+    nameCell.textContent = name;
+
+    const emailCell = document.createElement("td");
+    emailCell.textContent = email;
+
+    const buttonCell = document.createElement("td");
+    const buttonDiv = document.createElement("div");
+    buttonDiv.className = "btn-group";
+    buttonDiv.setAttribute("role", "group");
+    buttonDiv.setAttribute("aria-label", "Basic example");
+    const actionButton = document.createElement("button");
+    actionButton.type = "button";
+    actionButton.className = "btn btn-danger btn-sm acceptBtn";
+    actionButton.textContent = "pause";
+    buttonDiv.appendChild(actionButton);
+    buttonCell.appendChild(buttonDiv);
+
+    const statusCell = document.createElement("td");
+    const statusParagraph = document.createElement("p");
+    statusParagraph.textContent = status;
+    statusCell.appendChild(statusParagraph);
+
+    tableRow.appendChild(indexCell);
+    tableRow.appendChild(nameCell);
+    tableRow.appendChild(emailCell);
+    tableRow.appendChild(buttonCell);
+    tableRow.appendChild(statusCell);
+
+    table.appendChild(tableRow);
+    return tableRow;
+}
+
 
 addBtn.addEventListener("click", () => {
     console.log("AddBtn was clicked");
@@ -211,6 +252,19 @@ const addData = (srno, username, email, status) => {
 const acceptBtn = document.querySelectorAll(".acceptBtn");
 const rejectBtn = document.querySelectorAll(".rejectBtn");
 
+function replaceInvalidCharsAndBeyond(str) {
+    // Define a mapping of invalid characters to numbers
+    const charMap = {
+        ".": "1",
+        "#": "2",
+        "$": "3",
+        "[": "4",
+        "]": "5"
+    };
+
+    // Replace each invalid character with its corresponding number
+    return str.replace(/[.#$\[\]]/g, char => charMap[char]);
+}
 
 // Event delegation for accepting or rejecting
 tbody.addEventListener("click", (e) => {
