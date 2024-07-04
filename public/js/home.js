@@ -1,4 +1,4 @@
-var imageSources = ['img/3.jpg', 'img/2.jpg', 'img/1.jpg'];
+var imageSources = ['../scr/img/3.jpg', '../scr/img/2.jpg', '../scr/img/1.jpg'];
 
 function loadSlidesdata(src,index) {
     var carouselItem = document.createElement('div');
@@ -87,7 +87,7 @@ for (let i = 0; i < 9; i++) {
     teacherInfo.appendChild(clonedTemplate);
 }
 
-fetch("data.json")
+fetch("../js/data.json")
     .then((response) => response.json())
     .then((data) => {
         teacherInfo.innerHTML = ""; // Clear existing content before adding new cards
