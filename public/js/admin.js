@@ -96,6 +96,14 @@ document.getElementById('RegisterUserBtn').addEventListener("click", async () =>
             insertDataRegisterUser(j.name, j.email, i, j.status, 'registerUserTable', n)
             n++
         }
+        const ActivateUserActionBtn = document.querySelectorAll('.ActivateUserActionBtn');
+        const deactivateUserActionBtn = document.querySelectorAll('.deactivateUserActionBtn');
+        ActivateUserActionBtn.forEach(button => {
+            button.addEventListener('click', ActivateUserActionBtnFunction);
+        });
+        deactivateUserActionBtn.forEach(button => {
+            button.addEventListener('click', deactivateUserActionBtnFunction);
+        });
         // for(i of result.data){
         //     addRecords()
         // }
@@ -105,6 +113,21 @@ document.getElementById('RegisterUserBtn').addEventListener("click", async () =>
     document.getElementById('loadercontain').classList.add('d-none')
 });
 
+function ActivateUserActionBtnFunction(event) {
+    // Get the parent <tr> element of the clicked button
+    const trElement = event.target.closest('tr');
+    // Get the id attribute of the <tr> element
+    const id = trElement.getAttribute('id');
+    console.log('Clicked button in row with id:', id);
+}
+
+function deactivateUserActionBtnFunction(event) {
+    // Get the parent <tr> element of the clicked button
+    const trElement = event.target.closest('tr');
+    // Get the id attribute of the <tr> element
+    const id = trElement.getAttribute('id');
+    console.log('Clicked button in row with id:', id);
+}
 
 // const tbody = document.getElementById("requestedTable");
 const addBtn = document.getElementById("addRequestedUser");
@@ -193,11 +216,18 @@ function insertDataRegisterUser(name, email, id, status, table_id, count) {
     buttonDiv.className = "btn-group";
     buttonDiv.setAttribute("role", "group");
     buttonDiv.setAttribute("aria-label", "Basic example");
-    const actionButton = document.createElement("button");
-    actionButton.type = "button";
-    actionButton.className = "btn btn-danger btn-sm acceptBtn";
-    actionButton.textContent = "pause";
-    buttonDiv.appendChild(actionButton);
+    const ActivateUserActionBtn = document.createElement("button");
+    ActivateUserActionBtn.type = "button";
+    ActivateUserActionBtn.className = "btn btn-danger btn-sm ActivateUserActionBtn";
+    ActivateUserActionBtn.textContent = "De-Activate";
+    buttonDiv.appendChild(ActivateUserActionBtn);
+    buttonCell.appendChild(buttonDiv);
+    
+    const deactivateUserActionBtn = document.createElement("button");
+    deactivateUserActionBtn.type = "button";
+    deactivateUserActionBtn.className = "btn btn-success btn-sm deactivateUserActionBtn";
+    deactivateUserActionBtn.textContent = "Activate";
+    buttonDiv.appendChild(deactivateUserActionBtn);
     buttonCell.appendChild(buttonDiv);
 
     const statusCell = document.createElement("td");
@@ -267,36 +297,36 @@ function replaceInvalidCharsAndBeyond(str) {
 }
 
 // Event delegation for accepting or rejecting
-tbody.addEventListener("click", (e) => {
-    if (e.target.classList.contains("acceptBtn")) {
-        let acceptRow = e.target.parentElement.parentElement.parentElement;
-        let acceptRowId = acceptRow.getAttribute("id");
-        let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
-        currStatus.innerText = "Accepted";
-        updateStatus(acceptRowId, currStatus.innerText);
-    } else if (e.target.classList.contains("rejectBtn")) {
-        let rejectRow = e.target.parentElement.parentElement.parentElement;
-        let rejectRowId = rejectRow.getAttribute("id");
-        rejectRow.remove();
-        console.log(rejectRowId);
-        deleteFromData(rejectRowId);
-    }
-});
+// tbody.addEventListener("click", (e) => {
+//     if (e.target.classList.contains("acceptBtn")) {
+//         let acceptRow = e.target.parentElement.parentElement.parentElement;
+//         let acceptRowId = acceptRow.getAttribute("id");
+//         let currStatus = e.target.parentElement.parentElement.nextElementSibling.children[0]
+//         currStatus.innerText = "Accepted";
+//         updateStatus(acceptRowId, currStatus.innerText);
+//     } else if (e.target.classList.contains("rejectBtn")) {
+//         let rejectRow = e.target.parentElement.parentElement.parentElement;
+//         let rejectRowId = rejectRow.getAttribute("id");
+//         rejectRow.remove();
+//         console.log(rejectRowId);
+//         deleteFromData(rejectRowId);
+//     }
+// });
 
 
-const updateStatus = (id, currStatus) => {
-    data.forEach((row) => {
-        if (row.srno == id) {
-            console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
-            row.status = currStatus;
-        }
-    });
+// const updateStatus = (id, currStatus) => {
+//     data.forEach((row) => {
+//         if (row.srno == id) {
+//             console.log(`Changed status of ${id} from ${row.status} ==> ${currStatus}`);
+//             row.status = currStatus;
+//         }
+//     });
 
-}
-const deleteFromData = (id) => {
-    const index = data.findIndex(row => row.srno === parseInt(id));
-    if (index !== -1) {
-        data.splice(index, 1);
-    }
-    // console.log(data);
-}
+// }
+// const deleteFromData = (id) => {
+//     const index = data.findIndex(row => row.srno === parseInt(id));
+//     if (index !== -1) {
+//         data.splice(index, 1);
+//     }
+//     // console.log(data);
+// }
