@@ -77,4 +77,5 @@ index.html
 
 Home_files/
 
-..firebaserc 
+.firebaserc 
+*.json
