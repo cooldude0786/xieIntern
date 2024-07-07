@@ -1,23 +1,6 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getDatabase, ref, set, child, get, remove, update, push } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
-    authDomain: "xieresource.firebaseapp.com",
-    databaseURL: "https://xieresource-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "xieresource",
-    storageBucket: "xieresource.appspot.com",
-    messagingSenderId: "624733959118",
-    appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
-    measurementId: "G-YT3MV5GCBY"
-};
-const app = initializeApp(firebaseConfig);
-const db = ref(getDatabase(app));
-document.addEventListener('DOMContentLoaded', async function () {
-    // let re = await makeGrantedStudentEntry('khizarshaikh2922@gmail.com','khizar shaikh','asdasdasd',true)
-    // console.log(re);
-});
+import { createTeacherCard } from "./component.js";
+import { InsertTeacherRecord, getAllTeachersDetails } from "./db.js"
 async function makeGrantedStudentEntry(email, name, hascode) {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase();
@@ -44,45 +27,45 @@ async function makeGrantedStudentEntry(email, name, hascode) {
     }
 }
 
-function getAllUser() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
+// function getAllUser() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
 
-            get(child(db, 'users/granted'))
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        resolve({ data: snapshot.val() });
-                    } else {
-                        resolve({ err: "no data found" });
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                    reject(error); // Reject the promise if there's an error
-                });
-        }, 2000)
-    });
-}
-function getAllTeachersDetails() {
+//             get(child(db, 'users/granted'))
+//                 .then((snapshot) => {
+//                     if (snapshot.exists()) {
+//                         resolve({ data: snapshot.val() });
+//                     } else {
+//                         resolve({ err: "no data found" });
+//                     }
+//                 })
+//                 .catch((error) => {
+//                     console.error(error);
+//                     reject(error); // Reject the promise if there's an error
+//                 });
+//         }, 2000)
+//     });
+// }
+// function getAllTeachersDetails() {
 
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
 
-            get(child(db, 'testuser/'))
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        resolve({ data: snapshot.val() });
-                    } else {
-                        resolve({ err: "no data found" });
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                    reject(error); // Reject the promise if there's an error
-                });
-        }, 0)
-    });
-}
+//             get(child(db, 'testuser/'))
+//                 .then((snapshot) => {
+//                     if (snapshot.exists()) {
+//                         resolve({ data: snapshot.val() });
+//                     } else {
+//                         resolve({ err: "no data found" });
+//                     }
+//                 })
+//                 .catch((error) => {
+//                     console.error(error);
+//                     reject(error); // Reject the promise if there's an error
+//                 });
+//         }, 0)
+//     });
+// }
 document.getElementById('RegisterUserBtn').addEventListener("click", async () => {
     document.getElementById('loadercontain').classList.remove('d-none')
     try {
@@ -222,7 +205,7 @@ function insertDataRegisterUser(name, email, id, status, table_id, count) {
     ActivateUserActionBtn.textContent = "De-Activate";
     buttonDiv.appendChild(ActivateUserActionBtn);
     buttonCell.appendChild(buttonDiv);
-    
+
     const deactivateUserActionBtn = document.createElement("button");
     deactivateUserActionBtn.type = "button";
     deactivateUserActionBtn.className = "btn btn-success btn-sm deactivateUserActionBtn";
@@ -330,3 +313,52 @@ function replaceInvalidCharsAndBeyond(str) {
 //     }
 //     // console.log(data);
 // }
+
+
+const teacherInfo = document.getElementById("facultyDetails");
+
+// let isFirstCard = true;
+// fetch("../js/data.json")
+//     .then((response) => response.json())
+//     .then((data) => {
+//         teacherInfo.innerHTML = ""; // Clear existing content before adding new cards
+//         data.forEach(async (teacher,index) => {
+//             // const result = await InsertTeacherRecord(teacher.position, teacher.profileImage, teacher.name, teacher.position, teacher.education);
+//             console.log(index,teacher);
+//         });
+//     });
+
+
+document.addEventListener('DOMContentLoaded', async function () {
+
+    const result = await getAllTeachersDetails()
+    teacherInfo.innerHTML = " "
+    document.getElementById('Teacherloadercontain').classList.remove('d-none')
+    setTimeout(() => {
+        for (let [key, value] of Object.entries(result)) {
+            // console.log(key, value.data);
+            let teacherData = value.data
+            if (value.post != 'HOD') {
+                createTeacherCard(key,
+                    teacherData.profileImage,
+                    teacherData.name, teacherData.compareDocumentPosition,
+                    teacherData.education,
+                )
+            }
+        }
+        document.getElementById('Teacherloadercontain').classList.add('d-none')
+
+    }, 1000)
+
+
+});
+
+// Function to handle edit button click
+function editedTeacherData(uid) {
+    alert(`Edit button clicked for card with ID: ${uid}`);
+}
+
+// Function to handle delete button click
+function deleteProfile(uid) {
+    alert(`Delete button clicked for card with ID: ${uid}`);
+}

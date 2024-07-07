@@ -1,19 +1,24 @@
-var imageSources = ['../scr/img/3.jpg', '../scr/img/2.jpg', '../scr/img/1.jpg'];
+var imageSources = [
+     '../scr/img/1.jpg',
+'https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihY9PzdylaZFEBhNYa94PW2vndLFk0KCLWAKwOxdCte3kUIDcmeC3MBprFrLfSyF9bBEJyqOHxhAH0PTJEC-YOREceCg8GF8iDY=w1920-h912-rw-v1'
+];
 
 function loadSlidesdata(src,index) {
     var carouselItem = document.createElement('div');
+    carouselItem.style.height = 'inherit'
     if (index>0) {
         carouselItem.classList.add('carousel-item');
     } else {
         carouselItem.classList.add('carousel-item','active');// making the first silde having .active class so that carousel begins
     }
-    carouselItem.setAttribute('data-interval', '500');
+    // carouselItem.classList.add('d-flex','justify-content-center')
+    carouselItem.setAttribute('data-interval', '1000000');
 
     // Create a new img element
     var img = document.createElement('img');
-    img.classList.add('d-block', 'w-100');
+    img.classList.add("img-fluid");
     img.src = src;
-    img.alt = '...';
+    img.style.height='inherit'
 
     // Append the img to the carousel item
     carouselItem.appendChild(img);
@@ -24,7 +29,7 @@ function loadSlidesdata(src,index) {
 
 document.addEventListener('DOMContentLoaded', async function () {
     imageSources.forEach((item,index) => {
-        loadSlidesdata(item,index);
+        // loadSlidesdata(item,index);
     })
 });
 

@@ -1,27 +1,10 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getDatabase, ref, set, child, get, remove, update } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-import { generateAndAppendCard } from "./component.js";
-const firebaseConfig = {
-    apiKey: "AIzaSyAV7eZVlKbVzJgF0Leq1CzQZriJVwW9GO4",
-    authDomain: "xieresource.firebaseapp.com",
-    databaseURL: "https://xieresource-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "xieresource",
-    storageBucket: "xieresource.appspot.com",
-    messagingSenderId: "624733959118",
-    appId: "1:624733959118:web:e1d19e5d58c0184c32b19f",
-    measurementId: "G-YT3MV5GCBY"
-};
+import { generateAndAppendCard,getUrlParams } from "./component.js";
+import { getAllSubject,GetAllDataFromDB } from "./db.js";
 
-
-const app = await initializeApp(firebaseConfig);
-
-const db = await ref(getDatabase(app));
 const note = document.getElementById('noteBtn')
 note.addEventListener('click', () => {
     changeSlide('note')
-    getDefaultData()
+    // getDefaultData()
     // alert('note calls')
 })
 const qb = document.getElementById('QBBtn')
@@ -42,22 +25,93 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
     else {
         console.log("Semester:", sem);
+        // console.log()
+        displaySubject(await getAllSubject(sem));
         // getDefaultData(sem);
 
     }
 });
 
 
-async function getDefaultData(sem) {
-    var resultData = await GetAllDataFromDB(sem);
-    if (!resultData.hasOwnProperty('status')) {
-        for (let i in resultData) {
-            let Module = resultData[i]
-            generateAndAppendCard(i, Module.name, Module.data)
-        }
-        addActionToLi();
+function displaySubject(jsonData) {
+    // Reference to the <ul> element
+    var ul = document.getElementById('subject-List');
+
+    // Clear existing content in <ul>
+    ul.innerHTML = '';
+
+    // Check if jsonData is empty
+    if (Object.keys(jsonData).length === 0) {
+        var li = document.createElement('li');
+        li.textContent = "No data found";
+        ul.appendChild(li);
+    } else {
+        // Iterate over each key-value pair in JSON data
+        Object.keys(jsonData).forEach(function (key) {
+            // Create a new <li> element
+            var li = document.createElement('li');
+
+            // Set the ID of the <li> to the key from JSON data
+            li.id = key;
+
+            // Set the text content of the <li> to the value from JSON data
+            li.textContent = jsonData[key];
+
+            // Append the <li> to the <ul> element
+            ul.appendChild(li);
+            setupClickHandlers();
+
+        });
     }
-    if (!resultData.status) {
+}
+
+
+function setupClickHandlers() {
+    var lis = document.querySelectorAll('#subject-List li');
+
+    lis.forEach(function (li) {
+        li.addEventListener('click', function () {
+            // console.log('Clicked on:', li.id.trim());
+            const moduleDiv = document.querySelector('.module');
+
+            moduleDiv.innerHTML = `<div class="h2 p-4"> Module Notes</div>`
+            getDefaultData(getUrlParams().sem, li.id.trim());
+            // You can perform additional actions here as needed
+        });
+    });
+}
+
+// Call setupClickHandlers function after DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    setupClickHandlers();
+});
+async function getDefaultData(sem, SubjectCode) {
+    var resultData = await GetAllDataFromDB(sem, SubjectCode);
+    if (!resultData.hasOwnProperty('status')) {
+        console.log(resultData['Module']);
+        let data = resultData['Module']
+
+        try {
+
+
+            for (let i in data) {
+                let d = data[i]
+                console.log('=>', d.data);
+                generateAndAppendCard(i, d.name, d.data)
+            }
+            changeSlide('note')
+
+            // for (let i in resultData['Module']) {
+            //     let Module = resultData[i]
+            //     console.log(Module,'\n');
+            // }
+            // addActionToLi();            
+        } catch (error) {
+            console.log('errorrrrrr ', error);
+        }
+
+    }
+    else if (!resultData.status) {
         console.log('db message ' + resultData.msg)
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
@@ -71,65 +125,9 @@ async function getDefaultData(sem) {
         moduleDiv.appendChild(cardDiv);
         return
     }
-
+    ``
 }
 
-function getUrlParams() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const sem = urlParams.get('sem');
-    return { sem };
-}
-
-function InsertingLink() {
-    const db = getDatabase();
-
-    set(ref(db, '${sem}/'), {
-        'test1': a
-    }).then(() => {
-      console.log('done');
-        // Data saved successfully!
-      })
-      .catch((error) => {
-        console.log('failed');
-        // The write failed...
-      });
-
-}
-function GetAllDataFromDB(sem) {
-
-    // Return the promise here
-    return get(child(db, `${sem}/`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            // Return the value here
-
-           
-            // return { status: false, msg: "No data available" }
-
-            return snapshot.val();
-        } else {
-            console.log("No data available");
-            return { status: false, msg: "No data available" }
-        }
-    }).catch((error) => {
-        console.error(error);
-        return { status: false, msg: "Server down error 555" }
-    });
-}
-
-function GetCount(s) {
-    // Return the promise here
-    return get(child(db, `${s}`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            // Return the value here
-            return snapshot;
-        } else {
-            console.log("No data available");
-        }
-    }).catch((error) => {
-        console.error(error);
-    });
-}
 
 
 function addActionToLi() {
@@ -155,9 +153,7 @@ function addActionToLi() {
 
     //sfasx
 }
-function changeSubject(_id) {
-    alert(`called ${_id}`)
-}
+
 function expandModule(id_) {
     let parentDiv = id_.parentNode.parentNode
     if (parentDiv.children[1].style.height !== 'auto') {

@@ -32,3 +32,42 @@
   @keyframes l24{
     100%{background-position: left}
   }
+  .Hod-fluid{
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .img-fluid{
+    max-width: 100% !important;
+  }
+  .faculty-tab{
+    gap: 30px;
+  }
+  .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-img-top{
+    padding: 10px;
+    border-radius: 17%;
+  }
+  .tab-content{
+    background-color: aliceblue;
+  }
+
+  /* Define a fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Apply the animation to elements with the .fade-in class */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+.teacher-edit-btn{
+  width: fit-content;
+}
+.teacher-delete-btn{
+  width: fit-content;
+}

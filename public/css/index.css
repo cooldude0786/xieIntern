@@ -98,9 +98,22 @@
 
 .MNavbar .outerUl ul li {
     font-size: 20px;
+    width: 100px;
     font-weight: 800;
+    text-align: center; /* Center text horizontally */
+    display: flex; /* Use flexbox for centering vertically */
+    align-items: center; /* Center content vertically */
+    /* height: 100px; Example height for <li> */
+    overflow: hidden; /* Hide overflow to contain image */
 }
 
+.MNavbar .outerUl ul li img {
+    max-width: 100%; /* Ensure image does not exceed <li> width */
+    max-height: 100%; /* Ensure image does not exceed <li> height */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Proper block-level display */
+    margin: 0 auto; /* Center the image horizontally */
+}
 .homePage {
     width: 100%;
 }

@@ -45,7 +45,7 @@
 
   .teachericon{ 
     border-radius: 0.5rem;
-    max-height: 400px;
+    /* max-height: 400px; */
   }
 
   .teacherinfo{
@@ -60,3 +60,10 @@
       margin: auto;
       text-align: center;
   }
+  .heightInherit{
+    height: inherit;
+  }
+  .carousel-item {
+    text-align: center; /* Centers the image horizontally */
+    height: 200px; /* Set the height of each carousel item */
+}

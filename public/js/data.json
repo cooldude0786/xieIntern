@@ -1,12 +1,5 @@
 [
     {
-        "id": 1,
-        "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/16052020191923.png",
-        "name": "Dr. Jaychand Upadhyay",
-        "position": "HOD, Associate Professor",
-        "education": "M.E. (Computer Engineering) from Mumbai University, Ph.D. (Information Science) from Sophia University, Tokyo, Japan"
-    },
-    {
         "id": 2,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/14022020153727.png",
         "name": "Chhaya Dhavale",
