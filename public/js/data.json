@@ -1,65 +1,82 @@
-[
+[    {
+    "id": 3,
+    "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/18052020214301.png",
+    "name": "Meena Ugale",
+    "position": "Assistant Professor",
+    "education": "M.E. (Computer Engineering)",
+    "gender": "female"
+},
+    {
+        "id": 1,
+        "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/16052020191923.png",
+        "name": "Dr. Jaychand Upadhyay",
+        "position": "HOD, Associate Professor",
+        "education": "M.E. (Computer Engineering) from Mumbai University, Ph.D.(Information Science) from Sophia University, Tokyo, Japan",
+        "gender": "male"
+    },
     {
         "id": 2,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/14022020153727.png",
         "name": "Chhaya Dhavale",
         "position": "Assistant Professor",
-        "education": "M.E.(Computer Engg.)"
+        "education": "M.E.(Computer Engg.)",
+        "gender": "female"
     },
-    {
-        "id": 3,
-        "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/18052020214301.png",
-        "name": "Meena Ugale",
-        "position": "Assistant Professor",
-        "education": "M.E. (Computer Engineering)"
-    },
+
     {
         "id": 4,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/10012020104318.png",
         "name": "Martina D'Souza",
         "position": "Assistant Professor",
-        "education": "M.E. (Computer Engineering)"
+        "education": "M.E. (Computer Engineering)",
+        "gender": "female"
     },
     {
         "id": 5,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/10012020151526.png",
         "name": "Jyotsna More",
         "position": "Assistant Professor",
-        "education": "M.E. (Computer Engineering)"
+        "education": "M.E. (Computer Engineering)",
+        "gender": "female"
     },
     {
         "id": 6,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/01082020114705.png",
         "name": "Suvarna Aranjo",
         "position": "Assistant Professor",
-        "education": "M. E (Information Technology)"
+        "education": "M. E (Information Technology)",
+        "gender": "female"
     },
     {
         "id": 7,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/10012020145636.png",
         "name": "Sulochana Devi",
         "position": "Assistant Professor",
-        "education": "M. Tech (Software Engineering)"
+        "education": "M. Tech (Software Engineering)",
+        "gender": "female"
     },
     {
         "id": 8,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/10012020142351.png",
         "name": "Amit Narote",
         "position": "Assistant Professor",
-        "education": "M.E. (Computer Science and Engineering )"
+        "education": "M.E. (Computer Science and Engineering )",
+        "gender": "male"
     },
     {
         "id": 9,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/17092022105538.png",
         "name": "Jaya Jeswani",
         "position": "Assistant Professor",
-        "education": "M.E. (Computer Engineering)"
+        "education": "M.E. (Computer Engineering)",
+        "gender": "female"
     },
     {
         "id": 10,
         "profileImage": "https://www.xavier.ac.in/xvadmin/images/profiles/06032024160449.png",
         "name": "Ms.Stella J",
         "position": "Assistant Professor",
-        "education": "B.E. ECE , M.E. Applied Electronics."
+        "education": "B.E. ECE , M.E. Applied Electronics.",
+        "gender": "female"
     }
 ]

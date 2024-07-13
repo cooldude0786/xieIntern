@@ -71,3 +71,7 @@
 .teacher-delete-btn{
   width: fit-content;
 }
+.detailsDiv {
+  display: flex;
+  flex-flow: column;
+}

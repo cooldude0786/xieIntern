@@ -83,17 +83,23 @@ function GetCount(s) {
         console.error(error);
     });
 }
-function InsertTeacherRecord(post, profileImage, teacherName, teacherPosition, qualification) {
+function InsertTeacherRecord(post,
+    profileImage,
+    teacherName,
+    teacherPosition,
+    qualification,
+    gender) {
     const db = getDatabase();
 
-    let path = 'faculty/'
+    let path = 'home/faculty/'
     return push(ref(db, `${path}`), {
         post: `${post}`,
         data: {
             "profileImage": `${profileImage}`,
             "name": `${teacherName}`,
             "position": `${teacherPosition}`,
-            "education": `${qualification}`
+            "education": `${qualification}`,
+            "gender": `${gender}`
         }
     })
         .then(() => { return "done" })
@@ -102,7 +108,7 @@ function InsertTeacherRecord(post, profileImage, teacherName, teacherPosition, q
 function getAllTeachersDetails() {
     const db = getDatabase();
 
-    const path = 'faculty'
+    const path = 'home/faculty'
     return get(ref(db, `${path}`)).then((snapshot) => {
         return snapshot.val()
     })
@@ -110,4 +116,4 @@ function getAllTeachersDetails() {
             return { status: false, err: err }
         })
 }
-export { getAllSubject, GetAllDataFromDB, InsertTeacherRecord,getAllTeachersDetails }
+export { getAllSubject, GetAllDataFromDB, InsertTeacherRecord, getAllTeachersDetails }

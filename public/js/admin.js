@@ -1,5 +1,5 @@
 
-import { createTeacherCard } from "./component.js";
+import { createTeacherCard, createHodCard } from "./component.js";
 import { InsertTeacherRecord, getAllTeachersDetails } from "./db.js"
 async function makeGrantedStudentEntry(email, name, hascode) {
     const app = initializeApp(firebaseConfig);
@@ -26,7 +26,7 @@ async function makeGrantedStudentEntry(email, name, hascode) {
         return { success: false, message: "Error: " + error.message };
     }
 }
-
+let teacherdata;
 // function getAllUser() {
 //     return new Promise((resolve, reject) => {
 //         setTimeout(() => {
@@ -317,48 +317,85 @@ function replaceInvalidCharsAndBeyond(str) {
 
 const teacherInfo = document.getElementById("facultyDetails");
 
-// let isFirstCard = true;
+let isFirstCard = true;
 // fetch("../js/data.json")
 //     .then((response) => response.json())
 //     .then((data) => {
-//         teacherInfo.innerHTML = ""; // Clear existing content before adding new cards
-//         data.forEach(async (teacher,index) => {
-//             // const result = await InsertTeacherRecord(teacher.position, teacher.profileImage, teacher.name, teacher.position, teacher.education);
-//             console.log(index,teacher);
+//         // teacherInfo.innerHTML = ""; // Clear existing content before adding new cards
+//         data.forEach(async (teacherData,index) => {
+//             // const result = await InsertTeacherRecord(teacher.position, teacher.profileImage, teacher.name, teacher.position, teacher.education, teacher.gender);
+//             // console.log(index,teacher);
+//             createTeacherCard(index,
+//                 teacherData.profileImage,
+//                 teacherData.name, teacherData.position,
+//                 teacherData.education,
+//                 teacherData.gender
+//             )
 //         });
 //     });
+async function loadFacultiyData() {
 
 
-document.addEventListener('DOMContentLoaded', async function () {
-
+    document.getElementById('Teacherloadercontain').classList.add('d-none')
     const result = await getAllTeachersDetails()
-    teacherInfo.innerHTML = " "
-    document.getElementById('Teacherloadercontain').classList.remove('d-none')
+    teacherdata = result
     setTimeout(() => {
+        // loadFacultiyData()
+
+        teacherInfo.innerHTML = " "
+        document.getElementById('Teacherloadercontain').classList.remove('d-none')
         for (let [key, value] of Object.entries(result)) {
             // console.log(key, value.data);
             let teacherData = value.data
-            if (value.post != 'HOD') {
+            let position = value.post.toLowerCase().split(' ').includes('hod')
+            if (!position) {
                 createTeacherCard(key,
                     teacherData.profileImage,
                     teacherData.name, teacherData.compareDocumentPosition,
                     teacherData.education,
+                    teacherData.gender
+                )
+            } else {
+                createHodCard(
+                    key,
+                    teacherData.profileImage,
+                    teacherData.name, teacherData.compareDocumentPosition,
+                    teacherData.education,
+                    teacherData.gender
                 )
             }
         }
         document.getElementById('Teacherloadercontain').classList.add('d-none')
-
+        addEventListnerToAllTeacherBtn()
     }, 1000)
 
+}
 
+document.addEventListener('DOMContentLoaded', async function () {
+
+    loadFacultiyData()
 });
-
+function addEventListnerToAllTeacherBtn() {
+    let btn = document.getElementsByClassName('teacher-edit-btn')
+    let i = 0
+    while (i < btn.length) {
+        btn[i].addEventListener('click', editedTeacherData)
+        i++
+    }
+    btn = document.getElementsByClassName('teacher-delete-btn')
+    i = 0
+    while (i < btn.length) {
+        btn[i].addEventListener('click', deleteProfile)
+        i++
+    }
+}
 // Function to handle edit button click
-function editedTeacherData(uid) {
-    alert(`Edit button clicked for card with ID: ${uid}`);
+function editedTeacherData() {
+    $('#staticBackdrop').modal('show')
+    console.log("from edit",teacherdata[this.id]);
 }
 
 // Function to handle delete button click
-function deleteProfile(uid) {
-    alert(`Delete button clicked for card with ID: ${uid}`);
+function deleteProfile() {
+    console.log("from delete",this.id);
 }

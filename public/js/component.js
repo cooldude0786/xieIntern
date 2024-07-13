@@ -58,15 +58,13 @@ function getUrlParams() {
     const sem = urlParams.get('sem');
     return { sem };
 }
-
-function createTeacherCard(uid,imageSrc, title, post, qualification) {
-    const teacherInfo = document.getElementById("facultyDetails");
-
+function createTeacherCard(uid, imageSrc, title, post, qualification) {
     // Create card elements
     var cardDiv = document.createElement('div');
-    cardDiv.classList.add('card','fade-in','faculty');
+    cardDiv.classList.add('card', 'fade-in', 'faculty');
     cardDiv.style.width = '18rem';
     cardDiv.id = uid;
+
     var img = document.createElement('img');
     img.classList.add('card-img-top', 'align-self-center', 'w-50');
     img.src = imageSrc;
@@ -79,8 +77,11 @@ function createTeacherCard(uid,imageSrc, title, post, qualification) {
     titleElement.classList.add('card-title');
     titleElement.textContent = title;
 
+    var detailsDiv = document.createElement('div');
+    detailsDiv.classList.add('detailsDiv')
+
     var postElement = document.createElement('h4');
-    postElement.classList.add('card-text');
+    postElement.classList.add('card-text', 'post');
     postElement.textContent = post;
 
     var qualificationElement = document.createElement('h6');
@@ -88,32 +89,112 @@ function createTeacherCard(uid,imageSrc, title, post, qualification) {
     qualificationElement.textContent = qualification;
 
     var btnDiv = document.createElement('div');
-    btnDiv.classList.add('d-flex','justify-content-between');
-    
-    var editbtn = document.createElement('div');
-    editbtn.classList.add('btn','btn-primary','teacher-edit-btn');
+    btnDiv.classList.add('d-flex', 'justify-content-between');
+
+    var editbtn = document.createElement('button');
+    editbtn.type = 'button';
+    editbtn.classList.add('btn', 'btn-primary', 'teacher-edit-btn');
     editbtn.innerHTML = `Edit <i class="fa fa-edit"></i>`;
-    
-    var deleteBtn = document.createElement('div');
-    deleteBtn.classList.add('btn','btn-danger','teacher-edit-btn');
+    editbtn.id = uid
+
+    var deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.classList.add('btn', 'btn-danger', 'teacher-delete-btn');
     deleteBtn.innerHTML = `Delete <i class="fa fa-trash" aria-hidden="true"></i>`;
-    
+    deleteBtn.id = uid
+
     btnDiv.appendChild(editbtn);
     btnDiv.appendChild(deleteBtn);
 
-    // Append elements to cardBody
+    detailsDiv.appendChild(postElement);
+    detailsDiv.appendChild(qualificationElement);
+    detailsDiv.appendChild(btnDiv);
+
     cardBody.appendChild(titleElement);
-    cardBody.appendChild(postElement);
-    cardBody.appendChild(qualificationElement);
-    cardBody.appendChild(btnDiv);
-    // Append img and cardBody to cardDiv
+    cardBody.appendChild(detailsDiv);
     cardDiv.appendChild(img);
     cardDiv.appendChild(cardBody);
 
-    // Get the parent div where the card will be appended
-    var parentDiv = document.getElementById('teacher-info');
-    teacherInfo.appendChild(cardDiv);
+    // Append the created cardDiv to existing facultyDetails container
+    var facultyDetails = document.getElementById('facultyDetails');
+    facultyDetails.appendChild(cardDiv);
+}
+
+function createHodCard(id, imageSrc, name, designation, qualifications) {
+    // deleting existing hod cards if present
+    deleteHodCards()
+    // Create card elements
+    var cardDiv = document.createElement('div');
+    cardDiv.classList.add('align-items-center', 'order-1', 'rounded-5', 'card', 'col-sm-6', 'd-flex', 'hod', 'justify-content-center', 'p-2');
+    cardDiv.id = id
+
+    var rowDiv = document.createElement('div');
+    rowDiv.classList.add('row', 'w-100');
+
+    var imgDiv = document.createElement('div');
+    imgDiv.classList.add('col-md-4', 'd-flex', 'align-items-center', 'justify-content-center');
+
+    var img = document.createElement('img');
+    img.classList.add('img-fluid', 'rounded-start', 'teachericon');
+    img.src = imageSrc;
+    img.alt = name;
+    img.onerror = function () {
+        this.src = '../scr/img/maleTeacher.png';
+    };
+
+    imgDiv.appendChild(img);
+
+    var textDiv = document.createElement('div');
+    textDiv.classList.add('col-md-8');
+
+    var cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    var titleElement = document.createElement('h1');
+    titleElement.classList.add('card-title');
+    titleElement.textContent = name;
+
+    var postElement = document.createElement('h4');
+    postElement.classList.add('card-text');
+    postElement.textContent = designation;
+
+    var qualificationElement = document.createElement('h6');
+    qualificationElement.classList.add('card-text');
+    qualificationElement.textContent = qualifications;
+
+    cardBody.appendChild(titleElement);
+    cardBody.appendChild(postElement);
+    cardBody.appendChild(qualificationElement);
+
+    textDiv.appendChild(cardBody);
+
+    rowDiv.appendChild(imgDiv);
+    rowDiv.appendChild(textDiv);
+
+    cardDiv.appendChild(rowDiv);
+
+    // Append the created cardDiv to wherever you want in your document
+    var parentDiv = document.getElementById('teachers-tab'); // Replace with actual parent container ID
+    parentDiv.appendChild(cardDiv);
+}
+
+function deleteHodCards() {
+    var parentDiv = document.getElementById('teachers-tab');
+    // console.log(parentDiv);
+    if (!parentDiv) {
+        console.error('Parent div with id "teacher-tab" not found.');
+        return;
+    }
+
+    var hodCards = parentDiv.querySelectorAll('.hod');
+
+    // Loop through each hod card and remove it
+    hodCards.forEach(function (card) {
+        parentDiv.removeChild(card);
+    });
+
+    console.log('Deleted all HOD cards.');
 }
 
 
-export { generateAndAppendCard, getUrlParams, createTeacherCard }
+export { generateAndAppendCard, getUrlParams, createTeacherCard, createHodCard }
