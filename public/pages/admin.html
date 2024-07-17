@@ -24,7 +24,7 @@
 <body>
 
     <div class="row col-12 d-flex align-items-center p-0 m-0 p-lg-4 bg-primary header">
-        <div style="color: white;">IT Department</div>
+        <div class="col-3 d-flex" style="color: white;cursor:pointer" onclick="redirectToHome()">IT Department</div>
     </div>
     <div class="m-0 outwrapper px-3 pt-5 row justify-content-between">
         <div class="side-menu col-md-2">
@@ -64,6 +64,8 @@
 
                 <div class="active align-items-center col-md-12 d-flex fade flex-column justify-content-center show tab-pane"
                     id="teachers-tab">
+                    <button type="button" class="btn btn-primary align-self-end" data-toggle="modal"
+                        data-target="#teacherNewDataInsert">Add New Teacher <i class="fa fa-edit"></i></button>
                     <div class="loader d-none" id="Teacherloadercontain"></div>
                     <div class="faculty-tab align-content-center order-2 d-flex flex-wrap justify-content-center py-4"
                         id="facultyDetails">
@@ -109,32 +111,135 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="teacherDataUpdateModel" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="teacherDataUpdateModel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="teacherDataUpdateModel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="teacherName">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="education" class="col-sm-4 col-form-label">Qaulification</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="teacherEducation">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-4 col-form-label">Gender</label>
+                            <div class="col-sm-8">
+                                <select class="custom-select mr-sm-2" id="teacherGender">
+                                    <option selected>Choose...</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="profileImage" class="col-sm-4 col-form-label">Profile link</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="profileImage">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="post" class="col-sm-4 col-form-label">Position</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="post">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control d-none" disabled value="" id="teacherId">
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-primary" id="ChangeData">Update</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="teacherNewDataInsert" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="teacherNewDataInsert" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teacherNewDataInsert">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="NewTeacherName">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="education" class="col-sm-4 col-form-label">Qaulification</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="NewTeacherEducation">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-4 col-form-label">Gender</label>
+                            <div class="col-sm-8">
+                                <select class="custom-select mr-sm-2" id="NewTeacherGender">
+                                    <option selected>Choose...</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="profileImage" class="col-sm-4 col-form-label">Profile link</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="NewTeacherprofileImage">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="post" class="col-sm-4 col-form-label">Position</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="NewTeacherpost">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="NewteacherData">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+    <script>
+        function redirectToHome() {
+            window.location.href = "../index.html";
+        }
+    </script>
     <script type="module" src="../js/admin.js"></script>
 </body>
 

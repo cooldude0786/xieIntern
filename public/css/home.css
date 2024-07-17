@@ -1,3 +1,7 @@
+html , body{
+  height: 100%;
+  margin: 0;
+}
 .header {
     height: 110px;
     font-size: 35px;
@@ -66,4 +70,8 @@
   .carousel-item {
     text-align: center; /* Centers the image horizontally */
     height: 200px; /* Set the height of each carousel item */
+}
+.carousel-control-next, .carousel-control-prev{
+  top:calc(100% - (100% - 49px)) !important;
+  opacity: 1 !important;
 }

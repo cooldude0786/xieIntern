@@ -108,7 +108,9 @@ function createTeacherCard(uid, imageSrc, title, post, qualification) {
 
     detailsDiv.appendChild(postElement);
     detailsDiv.appendChild(qualificationElement);
-    detailsDiv.appendChild(btnDiv);
+    if(uid!=='123'){
+        detailsDiv.appendChild(btnDiv);
+    }
 
     cardBody.appendChild(titleElement);
     cardBody.appendChild(detailsDiv);
@@ -125,7 +127,7 @@ function createHodCard(id, imageSrc, name, designation, qualifications) {
     deleteHodCards()
     // Create card elements
     var cardDiv = document.createElement('div');
-    cardDiv.classList.add('align-items-center', 'order-1', 'rounded-5', 'card', 'col-sm-6', 'd-flex', 'hod', 'justify-content-center', 'p-2');
+    cardDiv.classList.add('align-items-center', 'fade-in', 'order-1', 'rounded-5', 'card', 'col-sm-6', 'd-flex', 'hod', 'justify-content-center', 'p-2');
     cardDiv.id = id
 
     var rowDiv = document.createElement('div');
@@ -161,10 +163,30 @@ function createHodCard(id, imageSrc, name, designation, qualifications) {
     var qualificationElement = document.createElement('h6');
     qualificationElement.classList.add('card-text');
     qualificationElement.textContent = qualifications;
+    var btnDiv = document.createElement('div');
+    btnDiv.classList.add('d-flex', 'justify-content-between');
+
+    var editbtn = document.createElement('button');
+    editbtn.type = 'button';
+    editbtn.classList.add('btn', 'btn-primary', 'teacher-edit-btn');
+    editbtn.innerHTML = `Edit <i class="fa fa-edit"></i>`;
+    editbtn.id = id
+
+    var deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.classList.add('btn', 'btn-danger', 'teacher-delete-btn');
+    deleteBtn.innerHTML = `Delete <i class="fa fa-trash" aria-hidden="true"></i>`;
+    deleteBtn.id = id
+
+    btnDiv.appendChild(editbtn);
+    btnDiv.appendChild(deleteBtn);
 
     cardBody.appendChild(titleElement);
     cardBody.appendChild(postElement);
     cardBody.appendChild(qualificationElement);
+    if (id !== '123') {
+        cardBody.appendChild(btnDiv);
+     }
 
     textDiv.appendChild(cardBody);
 
@@ -192,8 +214,6 @@ function deleteHodCards() {
     hodCards.forEach(function (card) {
         parentDiv.removeChild(card);
     });
-
-    console.log('Deleted all HOD cards.');
 }
 
 

@@ -1,6 +1,6 @@
 
 import { createTeacherCard, createHodCard } from "./component.js";
-import { InsertTeacherRecord, getAllTeachersDetails } from "./db.js"
+import { InsertTeacherRecord, getAllTeachersDetails, updateTeacherData, deleteTeacherData } from "./db.js"
 async function makeGrantedStudentEntry(email, name, hascode) {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase();
@@ -336,7 +336,7 @@ let isFirstCard = true;
 async function loadFacultiyData() {
 
 
-    document.getElementById('Teacherloadercontain').classList.add('d-none')
+    document.getElementById('Teacherloadercontain').classList.remove('d-none')
     const result = await getAllTeachersDetails()
     teacherdata = result
     setTimeout(() => {
@@ -351,7 +351,7 @@ async function loadFacultiyData() {
             if (!position) {
                 createTeacherCard(key,
                     teacherData.profileImage,
-                    teacherData.name, teacherData.compareDocumentPosition,
+                    teacherData.name, teacherData.position,
                     teacherData.education,
                     teacherData.gender
                 )
@@ -359,7 +359,7 @@ async function loadFacultiyData() {
                 createHodCard(
                     key,
                     teacherData.profileImage,
-                    teacherData.name, teacherData.compareDocumentPosition,
+                    teacherData.name, teacherData.position,
                     teacherData.education,
                     teacherData.gender
                 )
@@ -391,11 +391,67 @@ function addEventListnerToAllTeacherBtn() {
 }
 // Function to handle edit button click
 function editedTeacherData() {
-    $('#staticBackdrop').modal('show')
-    console.log("from edit",teacherdata[this.id]);
+    $('#teacherDataUpdateModel').modal('show')
+    document.getElementById('teacherId').value = this.id
+    console.log("from edit", teacherdata[this.id]);
+    let data = teacherdata[this.id]['data']
+    document.getElementById('teacherName').value = data['name']
+    document.getElementById('teacherEducation').value = data['education']
+    document.getElementById('teacherGender').value = data['gender']
+    document.getElementById('profileImage').value = data['profileImage']
+    document.getElementById('post').value = data['position']
+    // document.getElementById('teacherId').value = data['this.id']
 }
 
 // Function to handle delete button click
-function deleteProfile() {
-    console.log("from delete",this.id);
+async function deleteProfile() {
+    // console.log("from delete", this.id);
+    let result = await deleteTeacherData(this.id)
+    alert(result)
+    loadFacultiyData()
 }
+document.getElementById('ChangeData').addEventListener('click', async () => {
+
+    let name = document.getElementById('teacherName').value.trim()
+    let qaulification = document.getElementById('teacherEducation').value.trim()
+    let gender = document.getElementById('teacherGender').value.trim()
+    let image = document.getElementById('profileImage').value.trim()
+    let positon = document.getElementById('post').value.trim()
+    let teacherId = document.getElementById('teacherId').value.trim()
+    console.log(name, qaulification, positon, gender, image, teacherId);
+    let result = await updateTeacherData(positon,
+        image,
+        name,
+        positon,
+        qaulification,
+        gender,
+        teacherId
+    )
+    if (result.status) {
+        $('#teacherDataUpdateModel').modal('hide')
+        loadFacultiyData()
+    }
+    else {
+        console.error(result.err);
+    }
+})
+document.getElementById('NewteacherData').addEventListener('click', async () => {
+    let name = document.getElementById('NewTeacherName').value.trim()
+    let qaulification = document.getElementById('NewTeacherEducation').value.trim()
+    let gender = document.getElementById('NewTeacherGender').value.trim()
+    let image = document.getElementById('NewTeacherprofileImage').value.trim()
+    let position = document.getElementById('NewTeacherpost').value.trim()
+
+    const result = await InsertTeacherRecord(position,
+        image,
+        name,
+        position,
+        qaulification,
+        gender);
+        alert(result)
+        loadFacultiyData();
+    $('#teacherNewDataInsert').modal('hide')
+
+
+})
+// teacherName

@@ -116,4 +116,44 @@ function getAllTeachersDetails() {
             return { status: false, err: err }
         })
 }
-export { getAllSubject, GetAllDataFromDB, InsertTeacherRecord, getAllTeachersDetails }
+
+function updateTeacherData(post,
+    profileImage,
+    teacherName,
+    teacherPosition,
+    qualification,
+    gender,
+    id) {
+    const db = getDatabase();
+
+    let path = 'home/faculty/' + id
+    return update(ref(db, `${path}`), {
+        post: `${teacherPosition}`,
+        data: {
+            "profileImage": `${profileImage}`,
+            "name": `${teacherName}`,
+            "position": `${teacherPosition}`,
+            "education": `${qualification}`,
+            "gender": `${gender}`
+        }
+    })
+        .then((sanpshot) => { return { status: true } })
+        .catch((err) => { return { status: false, err: err } })
+}
+function deleteTeacherData(id) {
+    const db = getDatabase();
+    let path = 'home/faculty/' + id
+    return remove(ref(db, `${path}`)).then((snapshot) => {
+        return snapshot
+    }).catch((err) => {
+        return err
+    })
+}
+export {
+    getAllSubject,
+    GetAllDataFromDB,
+    InsertTeacherRecord,
+    getAllTeachersDetails,
+    updateTeacherData,
+    deleteTeacherData,
+}
